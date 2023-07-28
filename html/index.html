@@ -1,0 +1,702 @@
+<html>
+    <head>
+        <title>TETRIS GAME</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <style>
+            .block {
+                width:25px;
+                height:25px;
+                border-bottom:1px solid #98a3f7;
+                border-right:1px solid #98a3f7;
+                background-color:skyblue;
+            }
+            .space {
+                width:25px;
+                height:25px;
+                border-bottom:1px solid #98a3f7;
+                border-right:1px solid #98a3f7;
+                background-color:white;
+            }
+
+            .block_small {
+                width:8px;
+                height:8px;
+                border-bottom:1px solid #98a3f7;
+                border-right:1px solid #98a3f7;
+                background-color:skyblue;
+            }
+            .space_small {
+                width:8px;
+                height:8px;
+                border-bottom:1px solid #98a3f7;
+                border-right:1px solid #98a3f7;
+                background-color:white;
+            }
+/*
+	Define by Direction
+        □□□□   :  "0:0", "1:0", "2:0", "3:0"        "0:0", "0:1", "0:2", "0:3"
+
+        □
+        □□     :  "0:0", "1:0", "-1:0"          "0:1", "0:0", "1:0"          "0:0", "1:0", "1:1"          "0:1", "1:1", "1:0"
+
+         □        "0:1", "1:1", "1:0"           "0:0", "0:1", "1:1"          "0:1", "0:0", "1:0"          "0:0", "1:0", "1:1"
+        □□     :
+
+        □
+        □□□    :   "0:1", "1:1", "2:1", "0:0"            "0:2", "0:1", "0:0", "1:0"            "0:0", "1:0", "2:0", "2:1"            "0:2", "1:2", "1:1", "1:0"
+
+          □
+        □□□    :   "0:1", "1:1", "2:1", "2:0"            "1:-1", "1:0", "1:1", "2:1"            "-1:1", "-1:0", "0:0", "1:0"            "0:-1", "1:-1", "1:0", "1:1"
+
+        □□
+        □□     :   "0:1", "1:1", "0:0", "1:0"
+
+*/
+        </style>
+        <script>
+            var ALL_BLOCK = new Array();
+            var BLOCK_POSITION_SHAPE = 0; //Angular shapes within the same block.
+            ALL_BLOCK[0] = [["0:0", "1:0", "2:0", "3:0"],["0:0", "0:1", "0:2", "0:3"]];
+            ALL_BLOCK[1] = [["0:0", "0:1", "1:1"],["0:1", "0:0", "1:0"],["0:0", "1:0", "1:1"],["1:0", "0:1", "1:1"]];
+            ALL_BLOCK[2] = [["0:1", "1:1", "1:0"],["0:-1", "0:0", "1:0"],["0:1", "0:0", "1:0"],["0:-1", "1:-1", "1:0"]];
+            ALL_BLOCK[3] = [["0:1", "1:1", "2:1", "0:0"],["0:1", "0:0", "0:-1", "1:-1"],["0:-2", "1:-2", "2:-2", "2:-1"],["0:0", "0:1", "-1:2", "0:2"]];
+            ALL_BLOCK[4] = [["0:1", "1:1", "2:1", "2:0"],["1:-1", "1:0", "1:1", "2:1"],["-1:1", "-1:0", "0:0", "1:0"],["0:-1", "1:-1", "1:0", "1:1"]];
+            ALL_BLOCK[5] = [["1:1", "2:1", "1:0", "2:0"]];
+
+            var ALL_TD = [];
+            function makeBlock(col, row) {
+                for(var i=1; i <= row; i++) {  //Height
+                    document.write("<tr>");
+                    var X_array = [];
+                    for(var j=1; j <= col; j++) {   //Width
+                        var block_html = `
+                            <td class="space" id="${j}_${i}" x="${j}" y="${i}">
+                            </td>
+                        `;
+                        document.write(block_html);
+                        X_array.push(j + "_" + i);
+                    }
+                    document.write("</tr>");
+                    ALL_TD.push(X_array);
+                }
+            }
+
+            function moveBlock(gubun) {
+                if(NOW_BLOCK) {
+                    if(gubun == "UP") { //Shape changing function.
+                        if(ALL_BLOCK[NOW_BLOCK.shape].length == 1) {
+                            return false;
+                        }
+
+                        var is_stop = false;
+                        var new_current_blocks = [];
+                        BLOCK_POSITION_SHAPE++;
+                        if(!ALL_BLOCK[NOW_BLOCK.shape][BLOCK_POSITION_SHAPE]) {
+                            BLOCK_POSITION_SHAPE = 0;
+                        }
+                        for(var i=0; i < ALL_BLOCK[NOW_BLOCK.shape][BLOCK_POSITION_SHAPE].length; i++) {
+                            var current_standard_x = NOW_BLOCK.current_blocks[0].attr("x");
+                            var current_standard_y = NOW_BLOCK.current_blocks[0].attr("y");
+
+                            var block_xy = ALL_BLOCK[NOW_BLOCK.shape][BLOCK_POSITION_SHAPE][i].split(":");
+                            var new_x  = Number(block_xy[0]) + Number(current_standard_x);
+                            var new_y  = Number(block_xy[1]) + Number(current_standard_y);
+                            var new_id = new_x + "_" + new_y;
+
+                            if($("#" + new_id).length == 0) { //Dead End.
+                                is_stop = true;
+                            }
+                            else {
+                                if($("#"+new_id).attr("class") == "block" && !isExistNowBlock(new_id)) {
+                                    is_stop = true;
+                                }
+                            }
+
+
+                            new_current_blocks.push($("#" + new_id));
+                        }
+
+                        if(is_stop == true) {
+                            return false;
+                        }
+
+
+                        NOW_BLOCK.current_blocks.forEach(function(item, index){
+                            item.attr("class", "space");
+                        })
+
+                        new_current_blocks.forEach(function(item, index){
+                            item.attr("class", "block");
+                        })
+
+                        NOW_BLOCK.current_blocks = new_current_blocks;
+                    }
+                    else if(gubun == "RIGHT") {
+
+                        var new_current_blocks = [];
+                        var is_stop = false;
+                        NOW_BLOCK.current_blocks.forEach(function(item, index){
+                            var new_id = (Number(item.attr("x")) + 1) + "_" + item.attr("y");
+                            if($("#"+new_id).length == 0) {
+                                is_stop = true;
+                            }
+                            else {
+                                if($("#"+new_id).attr("class") == "block" && !isExistNowBlock(new_id)) {
+                                    is_stop = true;
+                                }
+                            }
+
+                            new_current_blocks.push($("#"+new_id));
+                        })
+
+                        if(is_stop == true) {  //Stop if it's a blocked road.
+                            return false;
+                        }
+
+
+                        NOW_BLOCK.current_blocks.forEach(function(item, index){
+                            item.attr("class","space");
+                        })
+                        new_current_blocks.forEach(function(item, index){
+                            item.attr("class","block");
+                        })
+                        NOW_BLOCK.current_blocks = new_current_blocks;
+                    }
+                    else if(gubun == "LEFT") {
+                        var new_current_blocks = [];
+                        var is_stop = false;
+                        NOW_BLOCK.current_blocks.forEach(function(item, index){
+                            var new_id = (Number(item.attr("x")) - 1) + "_" + item.attr("y");
+                            if($("#"+new_id).length == 0) {
+                                is_stop = true;
+                            }
+                            else {
+                                if($("#"+new_id).attr("class") == "block" && !isExistNowBlock(new_id)) {
+                                    is_stop = true;
+                                }
+                            }
+                            new_current_blocks.push($("#"+new_id));
+                        })
+
+                        if(is_stop == true) {  //Stop if it's a blocked road.
+                            return false;
+                        }
+
+                        NOW_BLOCK.current_blocks.forEach(function(item, index){
+                            item.attr("class","space");
+                        })
+                        new_current_blocks.forEach(function(item, index){
+                            item.attr("class","block");
+                        })
+                        NOW_BLOCK.current_blocks = new_current_blocks;
+                    }
+                    else if(gubun == "DOWN") {
+                        moveDown();
+                    }
+                    else if(gubun == "SPACEBAR") {
+                        while(moveDown() == true) {
+
+                        }
+                    }
+
+                }
+            }
+
+            function moveDown() {
+                var new_current_blocks = [];
+                var is_stop = false;
+                NOW_BLOCK.current_blocks.forEach(function(item, index){
+                    var new_id = item.attr("x") + "_" + (Number(item.attr("y"))+1);
+                    if($("#"+new_id).length == 0) { //Dead End.
+                        is_stop = true;
+                    }
+                    else {
+                        if($("#"+new_id).attr("class") == "block" && !isExistNowBlock(new_id)) {
+                            is_stop = true;
+                        }
+                    }
+                    new_current_blocks.push($("#"+new_id));
+                })
+
+                var return_value = true;
+                if(is_stop == true) {  //Stop if it's a blocked road.
+                    return_value = false;
+
+
+                    //Check if the game is in END situation -> Check the current block position and if any of them have a y value of 1 or less, exit situation.
+                    NOW_BLOCK.current_blocks.forEach(function(item, index){
+                        var y = item.attr("y");
+                        if(y <= 1) //Game End Status.
+                        {
+                            clearInterval(interval);
+                            $("#divEND").show();
+                            let data = {"code": "game_end", "socket_idx": my_socket_idx}
+                            sendMessage(data)
+                            //alert("Game Ended!")
+                            return false;
+                        }
+                    })
+                } else {
+                    NOW_BLOCK.current_blocks.forEach(function(item, index){
+                    item.attr("class","space");
+                    })
+                    new_current_blocks.forEach(function(item, index){
+                        item.attr("class","block");
+                    })
+                    NOW_BLOCK.current_blocks = new_current_blocks;
+                }
+                if(!return_value) {
+                    checkAllLine();
+                    newBlockRequest();
+                }
+                return return_value;
+            }
+
+            var sending_block_idx = 1
+            function newBlockRequest() {
+                //Bring the blocks in random order.
+                BLOCK_POSITION_SHAPE = 0;
+                sending_block_idx++;
+
+                NOW_BLOCK.shape = NEXT_BLOCK_SHAPE;
+                NEXT_BLOCK_SHAPE = null;
+                NOW_BLOCK.current_blocks = diplayBlock(NOW_BLOCK);
+
+                showNextBlock();
+
+                let data = {"code": "newblock_request", "socket_idx": my_socket_idx, "sending_block_idx": sending_block_idx}
+                sendMessage(data)
+            }
+
+            function checkAllLine() {
+                var cntSuccessLine = 0;
+                for(var row=ALL_TD.length-1; row >=0; row--) {
+                    var is_all_correct = true;
+                    for(var col=0; col < ALL_TD[row].length; col++) {
+                        var this_id = ALL_TD[row][col];
+                        var this_obj = $("#"+this_id);
+                        if(this_obj.attr("class") == "space") {
+                            is_all_correct = false;
+                        }
+                    }
+
+                    if(is_all_correct) {
+                        //row
+                        for(var k=row; k > 0; k--) {
+                            for(var j=0; j < ALL_TD[k].length; j++) {
+                                var this_id = ALL_TD[k][j];
+                                var this_obj = $("#"+this_id);
+
+                                var upon_id = ALL_TD[k-1][j];
+                                var upon_obj = $("#"+upon_id);
+                                var upon_obj_class = upon_obj.attr("class")
+
+                                this_obj.attr("class", upon_obj_class);
+
+                                if(upon_obj.length > 0) {
+                                    upon_obj.attr("class", "space");
+                                }
+                            }
+                        }
+                        //If we run this far, we'll turn the entire current line into the top line. Top row changed to white.
+                        row++;
+
+                        for(var j=0; j < ALL_TD[0].length; j++) {
+                            var this_id = ALL_TD[0][j];
+                            var this_obj = $("#"+this_id);
+                            this_obj.attr("class", "space");
+                        }
+
+                        //Add 100 points for each line removal
+                        var current_score = $("#score").html();
+                        current_score = Number(current_score) + 100;
+                        $("#score").html(current_score);
+
+                        if(current_score % 1000 == 0) {
+                            //Raise the level
+                            var current_level = $("#level").html();
+                            current_level = Number(current_level) + 1;
+                            $("#level").html(current_level);
+
+                            interval_miliseconds = interval_miliseconds - 200;
+                            clearInterval(interval);
+                            intervalDown();
+                        }
+                        cntSuccessLine++;
+                    }
+                }
+
+                if(cntSuccessLine >= 3) {
+                    var strikeCnt = cntSuccessLine-2;
+                    let data = {"code": "strike", "count": strikeCnt, "attacker": my_socket_idx}
+                    sendMessage(data)
+                }
+            }
+
+            function isExistNowBlock(id) {
+                var is_exist = false;
+                NOW_BLOCK.current_blocks.forEach(function(item, index){
+                    if(item.attr("id") == id) {
+                        is_exist = true;
+                    }
+                });
+
+                return is_exist;
+            }
+
+            var websocket = null;
+            var my_socket_idx = null;
+            var all_websocket = [];
+            var IS_MY_GAME_ENDED = false;
+            function socketConnect() {
+                websocket = new WebSocket("ws://localhost:8080");
+                websocket.onopen = function() {
+                    console.log("connected");
+                }
+
+                websocket.onmessage = function(e) {
+                    let message = JSON.parse(e.data);
+
+                    switch(message.code) {
+                        case "my_socket_idx" : //Getting the own socket idx.
+                            my_socket_idx = message.socket_idx;
+                        break;
+                        case "all_friends" :
+                            friendsSetting(message.sockets);
+                        break;
+                        case "friend_ready" :
+                            let finded_friend = all_websocket.find((element, index, arr) => element.idx === message.socket_idx);
+                            finded_friend.ready = true;
+                            $("#PLAYER"+finded_friend.alias).html("READY");
+                        break;
+                        case "newblock" :
+                            newBlock(message.next_block, message.now_block);
+                        break;
+                        case "attack_counter" :
+                            for(var kk=0; kk < message.count; kk++) {
+                                oneRowAttack()
+                            }
+                        break;
+                        case "countdown" :  //Countdown.
+                            //message.count
+                            $("#divCountDown").html(message.count)
+                            $("#divCountDown").show()
+                            setTimeout(function(){$("#divCountDown").hide();},500)
+                        break;
+                        case "stanby" :  //Game Start.
+                            gameStart();
+                        break;
+                        case "newblock_response" :
+                            newblockResponse(message.next_block);
+                        break;
+                        case "friend_game_end" :
+                            let finded_friend2 = all_websocket.find((element, index, arr) => element.idx === message.socket_idx);
+                            $("#PLAYER" + finded_friend2.alias).html("<span style='color:red'>DEAD</span>");
+                            IS_MY_GAME_ENDED = true
+                        break;
+                        case "game_finish" :
+                            let finded_friend3 = all_websocket.find((element, index, arr) => element.idx === message.winnerIdx);
+                            if(finded_friend3) {
+                                $("#PLAYER" + finded_friend3.alias).html("<span style='color:red; font-size:24px'>WIN!</span>");
+                            }
+
+                            if(my_socket_idx == message.winnerIdx) {
+                                $("#divEND").html("WINNER!");
+                                $("#divEND").css("color", "blue");
+                                $("#divEND").css("font-size", "24px");
+
+                                clearInterval(interval);
+                                clearInterval(interval_send_html);
+                                $("#divEND").show();
+                            }
+                        break;
+                        case "friends_now_html" :
+                            let all_friends_html = message.friends_tetris_html;
+                            for(var i=0; i < all_friends_html.length; i++) {
+                                var friend = all_friends_html[i];
+                                //friend.idx
+                                let finded_friend = all_websocket.find((element, index, arr) => element.idx === friend.idx);
+                                if(finded_friend) {
+                                    $("#PLAYER" + finded_friend.alias).html(friend.html);
+                                }
+                            }
+                        break;
+                    }
+                }
+            }
+
+			function oneRowAttack() {
+                //Take care of it one by one from the top (excluding the top row).
+                for(var row=1; row < ALL_TD.length; row++) {
+                    //row
+                    for(var j=0; j < ALL_TD[row].length; j++) {
+                        var this_id = ALL_TD[row][j];
+                        var this_obj = $("#"+this_id);
+                        var this_obj_class = this_obj.attr("class")
+
+                        if(!isContainNowBlock((j+1), (row+1))) {
+                            var upon_id = ALL_TD[row-1][j];
+                            var upon_obj = $("#"+upon_id);
+                            var upon_obj_class = upon_obj.attr("class")
+
+                            upon_obj.attr("class", this_obj_class);
+                        }
+                    }
+                }
+
+                //Fill the last line with blocks.
+                var space_td = rand(0, ALL_TD[ALL_TD.length - 1].length-1);
+                for(var j=0; j < ALL_TD[ALL_TD.length - 1].length; j++) {
+                    var this_id = ALL_TD[ALL_TD.length - 1][j];
+                    var this_obj = $("#"+this_id);
+                    var this_obj_class = this_obj.attr("class")
+
+                    if(j == space_td) {
+                        this_obj.attr("class", "space");
+                    }
+                    else {
+                        this_obj.attr("class", "block");
+                    }
+                }
+            }
+
+            function isContainNowBlock(x, y) {
+                var is_contained = false;
+                NOW_BLOCK.current_blocks.forEach(function(item, index){
+                    if(x == item.attr("x") && y == item.attr("y")) {
+                        is_contained = true;
+                        return is_contained;
+                    }
+                })
+                return is_contained;
+            }
+            function newblockResponse(next_block) {
+                NEXT_BLOCK_SHAPE = next_block
+                showNextBlock();
+            }
+
+            function requestTetrisHtml() {
+                let data = {"code": "send_tetris_html", "socket_idx": my_socket_idx}
+                sendMessage(data);
+            }
+
+            var interval_send_html = null;
+            function gameStart() {
+               //lower the blocks in every second
+               intervalDown();
+
+               interval_send_html = setInterval(() => { requestTetrisHtml(); }, 1000);
+
+                $(document).keydown(function(e){
+                    if(e.which == 38) { //When press the 'Up' key
+                //                        alert("Up")
+                        moveBlock("UP");
+                    }
+                    else if(e.which == 39) {
+                //                        alert("Right")
+                        moveBlock("RIGHT");
+                    }
+                    else if(e.which == 37) {
+                //                        alert("Left")
+                        moveBlock("LEFT");
+                    }
+                    else if(e.which == 40) {
+                //                        alert("Down")
+                        moveBlock("DOWN");
+                    }
+                    else if(e.which == 32) {
+                //                        alert("Space Bar")
+                        moveBlock("SPACEBAR");
+                    }
+                });
+            }
+
+            function friendsSetting(sockets_idx) {
+                let current_idx = 1
+                sockets_idx.forEach(function(sc_idx, index){
+                    if(sc_idx != my_socket_idx) { //If the player is not me.
+                        let alias = current_idx
+                        current_idx++;
+                        all_websocket.push({"idx": sc_idx, "alias": alias, "ready": false})
+
+                        $("#PLAYER"+alias).html("CONNECT")
+                    }
+                })
+            }
+
+            var NOW_BLOCK = new Object();
+            NOW_BLOCK.shape = null;  //Current block form.
+            NOW_BLOCK.current_blocks = null;   //Save the location of the current block.
+            $(document).ready(function(){
+                //Works when memory is loaded.
+                socketConnect();
+
+				$("#divEND").css("left", $("#TETRIS_CONTAINER").offset().left + "px")
+				$("#divEND").css("top", ($("#TETRIS_CONTAINER").offset().top + 260) + "px")
+				$("#divEND").css("width", $("#TETRIS_CONTAINER").css("width"));
+            });
+
+            //Random Number Generation Function.
+            function rand(min, max) {
+                //Math.random() : JavaScript function that randomly imports numbers between 0 and 1.
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+
+            var NEXT_BLOCK_SHAPE = null;
+            function newBlock(next_block, now_block) {
+                //Bring blocks at random.
+                BLOCK_POSITION_SHAPE = 0;
+
+                NOW_BLOCK.shape = now_block;
+                NEXT_BLOCK_SHAPE = next_block;
+                NOW_BLOCK.current_blocks = diplayBlock(NOW_BLOCK);
+
+                showNextBlock();
+            }
+
+            function showNextBlock() {
+                $("#divNextImg").html(`<img src="${NEXT_BLOCK_SHAPE}.gif" style="width:100%; height:200px">`);
+            }
+
+            var interval = null;
+            var interval_miliseconds = 1000;
+            var minimal_miliseconds = 100;
+            function intervalDown() {
+                if(interval_miliseconds < minimal_miliseconds) {
+                    interval_miliseconds = minimal_miliseconds;
+                }
+
+                interval = setInterval(() => {
+                   //Lowering blocks one by one.
+                   moveDown();
+                   sendMyTetris();
+                }, interval_miliseconds);
+            }
+
+            var INIT_X_POSITION = 5; //The x-position value of the initial block.
+            var INIT_Y_POSITION = 1; //The y-position value of the initial block.
+            function diplayBlock(nowblock) {  //Outputs the desired block (=nowblock) to the desired location.
+                //ALL_BLOCK[nowblock.shape]
+                var current_blocks = [];
+                for(var i=0; i < ALL_BLOCK[nowblock.shape][BLOCK_POSITION_SHAPE].length; i++) {
+                    // ALL_BLOCK[nowblock.shape][0]  ->   "0:0"
+                    var block_xy = ALL_BLOCK[nowblock.shape][BLOCK_POSITION_SHAPE][i].split(":");
+                    var block_x  = Number(block_xy[0]) + INIT_X_POSITION;
+                    var block_y  = Number(block_xy[1]) + INIT_Y_POSITION;
+
+                    $("#" + block_x + "_" + block_y).attr("class", "block");
+                    current_blocks.push($("#" + block_x + "_" + block_y));
+                }
+                return current_blocks;
+            }
+
+            function sendMyTetris() {
+                var my_tetris = $("#TETRIS_CONTAINER").html()
+
+                let data = {"code": "my_tetris", "html": my_tetris, "socket_idx": my_socket_idx};
+                sendMessage(data);
+            }
+
+            function iamReady(button) {
+                let data = {"code": "iam_ready", "socket_idx": my_socket_idx}
+                sendMessage(data);
+
+                button.disabled = true;
+                button.style.backgroundColor = "#BBBBBB"
+            }
+
+            function sendMessage(msg) {
+                websocket.send(JSON.stringify(msg));
+            }
+        </script>
+    </head>
+    <body>
+        <div style="width:1009px; height:550px; margin:0px auto; margin-top:50px">
+            <div style="height:550px; border-left:1px solid #98a3f7; border-top:1px solid #98a3f7; border-right:1px solid #98a3f7; border-bottom:1px solid #98a3f7; float:left; padding:0px">
+                <div id="TETRIS_CONTAINER" style="width:100%; padding:0px; margin:0px auto">
+                    <!-- Width x Height : 12 x 22 -->
+					<div style="display:none; position:absolute; left:0px; top:0px; text-align:center; color: red" id="divEND">
+						GAME END
+					</div>
+                    <table cellspacing=0 cellpadding=0 style="width:300px" align=center>
+                    <script>
+                        makeBlock(12, 22);
+                    </script>
+                    </table>
+                </div>
+				<div style="text-align:center; margin-top:20px">
+					<button style="padding:10px; background-color:blue; color:white" onclick="iamReady(this)">I AM READY</button>
+				</div>
+            </div>
+            <div style="width:200px; height:550px; background-color:white; float:left; margin-top:10px">
+                <div style="width:200px; height:50px; text-align:center; margin-bottom:15px">
+                    <div>Level</div>
+                    <div id="level">1</div>
+                </div>
+
+                <div style="width:200px; height:40px; text-align:center; margin-bottom:15px">
+                    <div>Score</div>
+                    <div id="score">0</div>
+                </div>
+
+                <div style="width:200px; height:30px; text-align:center">
+                    Next
+                </div>
+                <div style="width:200px; height:200px" id="divNextImg">
+
+                </div>
+                <div style="text-align:center; font-weight:bold; font-size:26px">
+                    <div style="font-size:12px">(Up Arrow: Change Shape)</div>
+                    <div>
+                        ↑ <br>
+                        ←↓→
+                    </div>
+                    <div style="font-size:12px; margin-top:13px">Spacebar (Lower to the Bottom)</div>
+                </div>
+            </div>
+
+            <div style="width:500px; background-color:white; float:left; margin-top:10px">
+				<div>
+					<div style="width:40%; min-height:230px; float:left; border:1px solid gray">
+						<div style="text-align:center">PLAYER1</div>
+						<div style="height:calc(230px - 30px); width:100%; text-align:center; margin-top:13px" id="PLAYER1">
+						</div>
+					</div>
+					<div style="width:40%; min-height:230px; float:left; border:1px solid gray">
+						<div style="text-align:center">PLAYER2</div>
+						<div style="height:calc(230px - 30px); width:100%; text-align:center; margin-top:13px" id="PLAYER2">
+						</div>
+					</div>
+				</div>
+				<div>
+					<div style="width:40%; min-height:230px; float:left; border:1px solid gray">
+						<div style="text-align:center">PLAYER3</div>
+						<div style="height:calc(230px - 30px); width:100%; text-align:center; margin-top:13px" id="PLAYER3">
+						</div>
+					</div>
+					<div style="width:40%; min-height:230px; float:left; border:1px solid gray">
+						<div style="text-align:center">PLAYER4</div>
+						<div style="height:calc(230px - 30px); width:100%; text-align:center; margin-top:13px" id="PLAYER4">
+						</div>
+					</div>
+				</div>
+				<div>
+					<div style="width:40%; min-height:230px; float:left; border:1px solid gray">
+						<div style="text-align:center">PLAYER5</div>
+						<div style="height:calc(230px - 30px); width:100%; text-align:center; margin-top:13px" id="PLAYER5">
+						</div>
+					</div>
+					<div style="width:40%; min-height:230px; float:left; border:1px solid gray">
+						<div style="text-align:center">PLAYER6</div>
+						<div style="height:calc(230px - 30px); width:100%; text-align:center; margin-top:13px" id="PLAYER6">
+						</div>
+					</div>
+				</div>
+            </div>
+
+        </div>
+
+		<div style="position:absolute; top:50%; left:50%; width:400px; height:400px; margin:-200px 0 0 -200px; text-align:center; color: red; display:none; font-size:160px" id="divCountDown">
+		</div>
+    </body>
+</html>

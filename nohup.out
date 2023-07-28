@@ -1,0 +1,640 @@
+Usage: flask run [OPTIONS]
+Try 'flask run --help' for help.
+
+Error: Could not locate a Flask application. Use the 'flask --app' option, 'FLASK_APP' environment variable, or a 'wsgi.py' or 'app.py' file in the current directory.
+Usage: flask run [OPTIONS]
+Try 'flask run --help' for help.
+
+Error: Could not locate a Flask application. Use the 'flask --app' option, 'FLASK_APP' environment variable, or a 'wsgi.py' or 'app.py' file in the current directory.
+Usage: flask run [OPTIONS]
+Try 'flask run --help' for help.
+
+Error: Could not locate a Flask application. Use the 'flask --app' option, 'FLASK_APP' environment variable, or a 'wsgi.py' or 'app.py' file in the current directory.
+Usage: flask run [OPTIONS]
+Try 'flask run --help' for help.
+
+Error: Could not locate a Flask application. Use the 'flask --app' option, 'FLASK_APP' environment variable, or a 'wsgi.py' or 'app.py' file in the current directory.
+ * Serving Flask app 'start.py'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:80
+ * Running on http://10.43.118.239:80
+[33mPress CTRL+C to quit[0m
+127.0.0.1 - - [28/Apr/2023 23:41:11] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [28/Apr/2023 23:41:11] "[36mGET /5.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [28/Apr/2023 23:42:54] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [28/Apr/2023 23:42:54] "[36mGET /2.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [28/Apr/2023 23:45:20] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [28/Apr/2023 23:45:21] "[36mGET /5.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [02/May/2023 22:07:22] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [02/May/2023 22:07:23] "[36mGET /4.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [03/May/2023 00:32:39] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/May/2023 14:27:18] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/May/2023 14:27:19] "[36mGET /0.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/May/2023 14:27:40] "[36mGET /4.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/May/2023 14:28:01] "[36mGET /2.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/May/2023 14:28:36] "[36mGET /5.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/May/2023 14:28:50] "[36mGET /3.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/May/2023 14:29:16] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/May/2023 14:29:16] "[36mGET /5.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/May/2023 14:29:37] "[36mGET /1.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/May/2023 14:29:44] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/May/2023 14:29:44] "[36mGET /3.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/May/2023 14:29:52] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/May/2023 14:29:52] "[36mGET /3.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/May/2023 14:30:01] "[36mGET /5.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/May/2023 14:30:06] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/May/2023 14:30:06] "[36mGET /2.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/May/2023 14:30:28] "[36mGET /0.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/May/2023 14:30:48] "[36mGET /4.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/May/2023 14:45:13] "[36mGET /3.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/May/2023 14:56:23] "[36mGET /4.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/May/2023 14:56:47] "[36mGET /1.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/May/2023 14:57:12] "[36mGET /5.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/May/2023 17:57:10] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [04/May/2023 17:57:10] "[36mGET /5.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/May/2023 17:57:58] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [04/May/2023 17:57:58] "[36mGET /0.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/May/2023 18:26:59] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [04/May/2023 18:29:06] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [06/May/2023 16:49:08] "[36mGET / HTTP/1.1[0m" 304 -
+Usage: flask run [OPTIONS]
+Try 'flask run --help' for help.
+
+Error: Could not locate a Flask application. Use the 'flask --app' option, 'FLASK_APP' environment variable, or a 'wsgi.py' or 'app.py' file in the current directory.
+sudo: unable to read password: Input/output error
+sudo: a password is required
+sudo: unable to read password: Input/output error
+sudo: a password is required
+ * Serving Flask app 'start'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:80
+ * Running on http://10.2.124.24:80
+[33mPress CTRL+C to quit[0m
+127.0.0.1 - - [31/May/2023 16:35:54] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2023 16:35:56] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+127.0.0.1 - - [31/May/2023 17:02:24] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2023 17:10:26] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2023 17:10:27] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [31/May/2023 17:10:45] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2023 17:13:57] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [31/May/2023 17:13:58] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [31/May/2023 17:13:58] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [31/May/2023 17:13:58] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [31/May/2023 17:32:04] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2023 17:33:04] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2023 17:33:05] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [31/May/2023 17:33:05] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [31/May/2023 17:33:05] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [31/May/2023 17:33:05] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [31/May/2023 17:33:06] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [31/May/2023 17:42:18] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2023 17:42:47] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2023 17:42:48] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [31/May/2023 17:44:16] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2023 17:47:54] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [31/May/2023 17:47:55] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [31/May/2023 17:47:55] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [31/May/2023 17:47:56] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [31/May/2023 17:47:56] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [31/May/2023 17:47:56] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [31/May/2023 17:47:56] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [31/May/2023 17:47:57] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [31/May/2023 17:47:57] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [31/May/2023 17:47:57] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [31/May/2023 17:47:57] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [31/May/2023 17:47:57] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [31/May/2023 17:47:57] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [31/May/2023 17:47:58] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [31/May/2023 17:47:58] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [31/May/2023 17:47:58] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [31/May/2023 17:47:58] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [31/May/2023 17:47:58] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [31/May/2023 17:47:58] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [31/May/2023 17:47:59] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [31/May/2023 17:48:01] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [31/May/2023 17:48:01] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [21/Jun/2023 14:27:12] "GET / HTTP/1.1" 200 -
+ * Serving Flask app 'start'
+ * Debug mode: off
+Address already in use
+Port 80 is in use by another program. Either identify and stop that program, or start the server with a different port.
+ * Serving Flask app 'start'
+ * Debug mode: off
+Address already in use
+Port 80 is in use by another program. Either identify and stop that program, or start the server with a different port.
+127.0.0.1 - - [04/Jul/2023 10:55:01] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [04/Jul/2023 10:55:01] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+127.0.0.1 - - [04/Jul/2023 13:18:51] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 13:18:53] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 13:57:05] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 13:57:06] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 13:57:09] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 13:57:10] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 13:57:10] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 13:57:23] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 13:58:04] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 13:58:05] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 13:58:16] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 14:04:41] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 14:04:42] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 14:04:43] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 14:06:46] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [04/Jul/2023 14:24:28] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 14:34:36] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [04/Jul/2023 14:34:37] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 14:34:38] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 14:41:43] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [04/Jul/2023 14:41:46] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 14:42:42] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 14:42:43] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 14:44:51] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [04/Jul/2023 14:44:51] "GET /4.gif HTTP/1.1" 200 -
+127.0.0.1 - - [04/Jul/2023 14:45:50] "GET /3.gif HTTP/1.1" 200 -
+127.0.0.1 - - [04/Jul/2023 14:55:15] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [04/Jul/2023 14:55:16] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 14:55:16] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 14:55:16] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 14:55:16] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 14:55:16] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 14:55:17] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 14:55:36] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [04/Jul/2023 14:55:36] "GET /5.gif HTTP/1.1" 200 -
+127.0.0.1 - - [04/Jul/2023 14:55:58] "GET /2.gif HTTP/1.1" 200 -
+127.0.0.1 - - [04/Jul/2023 14:56:17] "[36mGET /3.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 14:56:34] "GET /0.gif HTTP/1.1" 200 -
+127.0.0.1 - - [04/Jul/2023 14:57:52] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [04/Jul/2023 14:57:52] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 14:57:53] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 14:58:04] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 14:58:05] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 14:58:39] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [04/Jul/2023 14:58:39] "GET /1.gif HTTP/1.1" 200 -
+127.0.0.1 - - [04/Jul/2023 14:59:06] "[36mGET /5.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 14:59:25] "[36mGET /2.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [04/Jul/2023 15:03:33] "[36mGET /4.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [05/Jul/2023 10:38:53] "[36mGET /0.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [06/Jul/2023 13:54:24] "[36mGET /4.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [06/Jul/2023 14:07:11] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [06/Jul/2023 14:07:12] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [06/Jul/2023 14:07:13] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [06/Jul/2023 14:11:08] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [06/Jul/2023 14:11:09] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [06/Jul/2023 14:11:14] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [06/Jul/2023 14:11:15] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [06/Jul/2023 14:11:15] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [06/Jul/2023 14:12:40] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [06/Jul/2023 14:12:41] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [06/Jul/2023 14:12:41] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [06/Jul/2023 14:12:42] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [06/Jul/2023 14:18:06] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [06/Jul/2023 14:18:53] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [06/Jul/2023 14:18:53] "[36mGET /1.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [06/Jul/2023 14:19:14] "[36mGET /0.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [06/Jul/2023 14:19:23] "[36mGET /5.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [06/Jul/2023 14:19:28] "[36mGET /3.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [06/Jul/2023 14:19:32] "[36mGET /1.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [06/Jul/2023 14:19:47] "[36mGET /2.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [06/Jul/2023 14:20:04] "[36mGET /0.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [06/Jul/2023 14:20:32] "[36mGET /4.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [06/Jul/2023 14:25:58] "[36mGET /3.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [06/Jul/2023 14:26:23] "[36mGET /1.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [06/Jul/2023 15:27:33] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [06/Jul/2023 15:27:33] "[36mGET /3.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [06/Jul/2023 15:28:22] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [06/Jul/2023 15:28:22] "[36mGET /3.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2023 11:27:46] "[36mGET /1.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2023 11:27:49] "[36mGET /4.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2023 11:27:50] "[36mGET /0.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2023 11:27:58] "[36mGET /2.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [07/Jul/2023 11:28:01] "[36mGET /5.gif HTTP/1.1[0m" 304 -
+ * Serving Flask app 'start'
+ * Debug mode: off
+Address already in use
+Port 80 is in use by another program. Either identify and stop that program, or start the server with a different port.
+127.0.0.1 - - [11/Jul/2023 13:19:56] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [11/Jul/2023 13:19:57] "[36mGET /4.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [11/Jul/2023 13:20:08] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [11/Jul/2023 13:20:08] "[36mGET /4.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [11/Jul/2023 13:21:21] "[36mGET /0.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [11/Jul/2023 13:21:42] "[36mGET /2.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [11/Jul/2023 13:27:23] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [11/Jul/2023 13:27:23] "[36mGET /0.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [11/Jul/2023 13:27:26] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [11/Jul/2023 13:27:26] "[36mGET /1.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [11/Jul/2023 13:27:57] "[36mGET /0.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [11/Jul/2023 13:29:01] "[36mGET /3.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [11/Jul/2023 13:29:24] "[36mGET /4.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [11/Jul/2023 13:45:30] "[36mGET /0.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [11/Jul/2023 13:51:56] "[36mGET /5.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [11/Jul/2023 13:52:04] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [11/Jul/2023 13:52:04] "[36mGET /4.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [11/Jul/2023 13:52:32] "[36mGET /1.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [11/Jul/2023 13:52:59] "[36mGET /3.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [11/Jul/2023 14:02:22] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [11/Jul/2023 14:10:36] "[36mGET / HTTP/1.1[0m" 304 -
+ * Serving Flask app 'start'
+ * Debug mode: off
+Address already in use
+Port 80 is in use by another program. Either identify and stop that program, or start the server with a different port.
+127.0.0.1 - - [11/Jul/2023 14:11:18] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [11/Jul/2023 16:01:02] "GET / HTTP/1.1" 200 -
+ * Serving Flask app 'start'
+ * Debug mode: off
+Address already in use
+Port 80 is in use by another program. Either identify and stop that program, or start the server with a different port.
+127.0.0.1 - - [11/Jul/2023 16:01:24] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [11/Jul/2023 16:02:08] "GET / HTTP/1.1" 200 -
+ * Serving Flask app 'start'
+ * Debug mode: off
+Address already in use
+Port 80 is in use by another program. Either identify and stop that program, or start the server with a different port.
+127.0.0.1 - - [11/Jul/2023 16:03:55] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [11/Jul/2023 16:03:55] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [11/Jul/2023 16:04:17] "[36mGET / HTTP/1.1[0m" 304 -
+ * Serving Flask app 'start'
+ * Debug mode: off
+Address already in use
+Port 80 is in use by another program. Either identify and stop that program, or start the server with a different port.
+127.0.0.1 - - [11/Jul/2023 17:03:42] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [12/Jul/2023 14:26:36] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [12/Jul/2023 14:26:38] "[36mGET / HTTP/1.1[0m" 304 -
+ * Serving Flask app 'start'
+ * Debug mode: off
+Address already in use
+Port 80 is in use by another program. Either identify and stop that program, or start the server with a different port.
+ * Serving Flask app 'start'
+ * Debug mode: off
+Address already in use
+Port 80 is in use by another program. Either identify and stop that program, or start the server with a different port.
+127.0.0.1 - - [12/Jul/2023 14:34:36] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [12/Jul/2023 16:38:03] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [12/Jul/2023 16:38:06] "[36mGET / HTTP/1.1[0m" 304 -
+ * Serving Flask app 'start'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:80
+ * Running on http://10.65.40.136:80
+[33mPress CTRL+C to quit[0m
+127.0.0.1 - - [13/Jul/2023 15:28:17] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [13/Jul/2023 15:28:17] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+127.0.0.1 - - [13/Jul/2023 15:36:47] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [19/Jul/2023 11:30:18] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [19/Jul/2023 11:30:20] "[36mGET / HTTP/1.1[0m" 304 -
+ * Serving Flask app 'start'
+ * Debug mode: off
+Address already in use
+Port 80 is in use by another program. Either identify and stop that program, or start the server with a different port.
+127.0.0.1 - - [19/Jul/2023 12:27:01] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [19/Jul/2023 12:27:02] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [19/Jul/2023 12:27:09] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [19/Jul/2023 12:28:00] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [19/Jul/2023 12:48:11] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [19/Jul/2023 12:48:52] "[36mGET / HTTP/1.1[0m" 304 -
+ * Serving Flask app 'start'
+ * Debug mode: off
+Address already in use
+Port 80 is in use by another program. Either identify and stop that program, or start the server with a different port.
+127.0.0.1 - - [19/Jul/2023 12:53:28] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [19/Jul/2023 12:53:48] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [19/Jul/2023 13:10:28] "GET / HTTP/1.1" 200 -
+ * Serving Flask app 'start'
+ * Debug mode: off
+Address already in use
+Port 80 is in use by another program. Either identify and stop that program, or start the server with a different port.
+127.0.0.1 - - [19/Jul/2023 13:11:17] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [19/Jul/2023 13:11:22] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [19/Jul/2023 13:13:56] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [19/Jul/2023 13:13:57] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [19/Jul/2023 13:30:13] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [19/Jul/2023 13:39:01] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [19/Jul/2023 14:28:13] "[36mGET / HTTP/1.1[0m" 304 -
+ * Serving Flask app 'start'
+ * Debug mode: off
+Address already in use
+Port 80 is in use by another program. Either identify and stop that program, or start the server with a different port.
+127.0.0.1 - - [19/Jul/2023 14:28:51] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [19/Jul/2023 14:29:31] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [19/Jul/2023 14:33:33] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [23/Jul/2023 22:06:37] "[36mGET / HTTP/1.1[0m" 304 -
+ * Serving Flask app 'start'
+ * Debug mode: off
+Address already in use
+Port 80 is in use by another program. Either identify and stop that program, or start the server with a different port.
+127.0.0.1 - - [26/Jul/2023 13:41:38] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [26/Jul/2023 13:41:39] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [26/Jul/2023 13:42:16] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [26/Jul/2023 13:48:35] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [26/Jul/2023 14:04:00] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [26/Jul/2023 14:11:41] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [26/Jul/2023 14:26:08] "GET / HTTP/1.1" 200 -
+ * Serving Flask app 'start'
+ * Debug mode: off
+Address already in use
+Port 80 is in use by another program. Either identify and stop that program, or start the server with a different port.
+127.0.0.1 - - [26/Jul/2023 14:26:24] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [26/Jul/2023 14:26:26] "GET /2.gif HTTP/1.1" 200 -
+127.0.0.1 - - [26/Jul/2023 14:27:41] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [26/Jul/2023 14:27:43] "GET /4.gif HTTP/1.1" 200 -
+127.0.0.1 - - [26/Jul/2023 14:28:54] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [26/Jul/2023 14:29:03] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [26/Jul/2023 15:28:20] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [26/Jul/2023 15:44:33] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [26/Jul/2023 16:12:19] "GET / HTTP/1.1" 200 -
+ * Serving Flask app 'start'
+ * Debug mode: off
+Address already in use
+Port 80 is in use by another program. Either identify and stop that program, or start the server with a different port.
+ * Serving Flask app 'start'
+ * Debug mode: off
+Address already in use
+Port 80 is in use by another program. Either identify and stop that program, or start the server with a different port.
+127.0.0.1 - - [27/Jul/2023 10:19:18] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Jul/2023 10:19:29] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 11:16:54] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Jul/2023 11:29:11] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Jul/2023 11:29:43] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Jul/2023 11:31:16] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 11:32:16] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Jul/2023 11:32:19] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 11:32:38] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Jul/2023 11:32:42] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 11:33:34] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Jul/2023 11:39:23] "[36mGET /4.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 11:39:38] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 11:39:40] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 11:39:43] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 11:39:52] "[36mGET /4.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 11:39:52] "[36mGET /4.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 11:39:52] "[36mGET /4.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 11:41:40] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 11:59:58] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 11:59:59] "[36mGET / HTTP/1.1[0m" 304 -
+ * Serving Flask app 'start'
+ * Debug mode: off
+Address already in use
+Port 80 is in use by another program. Either identify and stop that program, or start the server with a different port.
+127.0.0.1 - - [27/Jul/2023 12:00:13] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 12:00:15] "GET /1.gif HTTP/1.1" 200 -
+127.0.0.1 - - [27/Jul/2023 12:10:59] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Jul/2023 12:11:00] "[36mGET / HTTP/1.1[0m" 304 -
+ * Serving Flask app 'start'
+ * Debug mode: off
+Address already in use
+Port 80 is in use by another program. Either identify and stop that program, or start the server with a different port.
+127.0.0.1 - - [27/Jul/2023 12:11:35] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 12:11:37] "[36mGET /4.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 12:11:39] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 12:13:58] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 12:14:00] "[36mGET /4.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 12:14:01] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 12:15:53] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Jul/2023 12:15:58] "[36mGET / HTTP/1.1[0m" 304 -
+ * Serving Flask app 'start'
+ * Debug mode: off
+Address already in use
+Port 80 is in use by another program. Either identify and stop that program, or start the server with a different port.
+127.0.0.1 - - [27/Jul/2023 12:16:16] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 12:16:17] "GET /5.gif HTTP/1.1" 200 -
+127.0.0.1 - - [27/Jul/2023 12:16:18] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 12:20:47] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Jul/2023 12:20:48] "[36mGET /4.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 12:23:47] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 12:23:51] "GET /0.gif HTTP/1.1" 200 -
+127.0.0.1 - - [27/Jul/2023 12:23:51] "[36mGET /0.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 12:30:37] "[36mGET / HTTP/1.1[0m" 304 -
+ * Serving Flask app 'start'
+ * Debug mode: off
+Address already in use
+Port 80 is in use by another program. Either identify and stop that program, or start the server with a different port.
+127.0.0.1 - - [27/Jul/2023 12:30:56] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 12:30:58] "GET /3.gif HTTP/1.1" 200 -
+127.0.0.1 - - [27/Jul/2023 12:31:05] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 12:31:05] "[36mGET /4.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 12:31:07] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 12:31:08] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 12:31:08] "[36mGET /0.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 12:31:11] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 12:31:13] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 12:59:17] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 13:08:31] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Jul/2023 13:08:49] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Jul/2023 13:09:20] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Jul/2023 13:09:58] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Jul/2023 13:10:41] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 13:11:49] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 13:13:56] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 14:30:46] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Jul/2023 14:31:01] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Jul/2023 14:34:40] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Jul/2023 14:34:41] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 14:34:41] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 14:34:41] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 14:34:42] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 14:35:06] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Jul/2023 14:48:59] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Jul/2023 14:49:51] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [27/Jul/2023 14:49:51] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 15:11:37] "GET / HTTP/1.1" 200 -
+ * Serving Flask app 'start'
+ * Debug mode: off
+Address already in use
+Port 80 is in use by another program. Either identify and stop that program, or start the server with a different port.
+127.0.0.1 - - [27/Jul/2023 15:11:56] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 15:11:58] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 15:11:59] "[36mGET /4.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 15:12:05] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:12:05] "[36mGET /1.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 15:12:08] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:12:09] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:12:09] "[36mGET /2.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 15:12:10] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:12:10] "[36mGET /5.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 15:12:12] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:12:12] "[36mGET /3.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 15:12:16] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:12:18] "[36mGET /4.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 15:12:18] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:12:19] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:12:21] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:12:23] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:12:25] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:12:26] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:12:30] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:12:32] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:12:34] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:12:34] "[36mGET /0.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 15:12:37] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:12:39] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:12:41] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:12:42] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:12:43] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:12:45] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:12:46] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:12:47] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:12:49] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:12:50] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:12:54] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:12:58] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:12:59] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:00] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:01] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:02] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:04] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:05] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:07] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:09] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:12] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:13] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:15] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:16] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:18] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:20] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:21] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:22] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:23] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:26] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:28] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:29] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:31] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:32] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:33] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:37] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:38] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:39] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:41] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:43] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:46] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:48] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:50] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:51] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:53] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:55] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:55] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:58] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:13:59] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:14:00] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:14:02] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:14:03] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:14:19] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:14:22] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:14:26] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:14:29] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:14:31] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:14:32] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:14:34] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:14:35] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:14:37] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:14:38] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:14:40] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:14:41] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:14:43] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:14:45] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:14:46] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:14:48] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:14:49] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:14:50] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:14:51] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:14:52] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:14:54] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:14:55] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:14:57] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:14:58] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:15:00] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:15:03] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:15:04] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:15:06] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:15:08] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:15:09] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:15:11] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:15:20] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:15:31] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:15:34] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:15:35] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:15:50] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:16:06] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:16:06] "[36mGET /0.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 15:16:20] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:16:20] "[36mGET /2.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 15:16:33] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:16:33] "[36mGET /4.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 15:23:11] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:23:11] "[36mGET /1.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 15:32:11] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:32:11] "[36mGET /5.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 15:36:15] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:36:22] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:36:22] "[36mGET /2.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [27/Jul/2023 15:36:27] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:36:30] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [27/Jul/2023 15:36:31] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+ * Serving Flask app 'start'
+ * Debug mode: off
+Address already in use
+Port 80 is in use by another program. Either identify and stop that program, or start the server with a different port.
+127.0.0.1 - - [28/Jul/2023 11:37:05] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [28/Jul/2023 11:37:09] "[36mGET /5.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [28/Jul/2023 11:37:20] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [28/Jul/2023 11:37:20] "[36mGET /2.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [28/Jul/2023 11:37:20] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [28/Jul/2023 11:37:21] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [28/Jul/2023 11:37:21] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [28/Jul/2023 11:37:21] "[36mGET /4.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [28/Jul/2023 11:37:21] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [28/Jul/2023 11:37:21] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [28/Jul/2023 11:37:22] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [28/Jul/2023 11:37:22] "[36mGET /1.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [28/Jul/2023 11:37:22] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [28/Jul/2023 11:37:22] "[36mGET /0.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [28/Jul/2023 11:37:22] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [28/Jul/2023 11:37:22] "[36mGET /3.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [28/Jul/2023 11:37:22] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [28/Jul/2023 11:37:22] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [28/Jul/2023 11:37:22] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [28/Jul/2023 11:37:22] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [28/Jul/2023 11:37:23] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [28/Jul/2023 12:00:32] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [28/Jul/2023 12:00:33] "[36mGET /5.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [28/Jul/2023 12:00:59] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [28/Jul/2023 12:00:59] "[36mGET /2.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [28/Jul/2023 12:01:19] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [28/Jul/2023 12:01:37] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [28/Jul/2023 12:01:53] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [28/Jul/2023 12:01:53] "[36mGET /4.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [28/Jul/2023 12:02:07] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [28/Jul/2023 12:02:19] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [28/Jul/2023 12:02:29] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [28/Jul/2023 12:02:29] "[36mGET /1.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [28/Jul/2023 12:02:37] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [28/Jul/2023 12:02:37] "[36mGET /0.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [28/Jul/2023 12:02:43] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [28/Jul/2023 12:02:43] "[36mGET /3.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [28/Jul/2023 12:02:48] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [28/Jul/2023 12:02:51] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [28/Jul/2023 12:02:52] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [28/Jul/2023 12:43:09] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [28/Jul/2023 12:43:11] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [28/Jul/2023 12:43:33] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [28/Jul/2023 12:44:28] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [28/Jul/2023 12:44:39] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [28/Jul/2023 12:44:55] "[36mGET / HTTP/1.1[0m" 304 -
+ * Serving Flask app 'start'
+ * Debug mode: off
+Address already in use
+Port 80 is in use by another program. Either identify and stop that program, or start the server with a different port.
+127.0.0.1 - - [28/Jul/2023 12:45:07] "[36mGET / HTTP/1.1[0m" 304 -
+127.0.0.1 - - [28/Jul/2023 12:45:10] "[36mGET /1.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [28/Jul/2023 12:45:15] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [28/Jul/2023 12:45:17] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [28/Jul/2023 12:45:17] "[36mGET /2.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [28/Jul/2023 12:45:18] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [28/Jul/2023 12:45:18] "[36mGET /0.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [28/Jul/2023 12:45:38] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [28/Jul/2023 12:45:38] "[36mGET /5.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [28/Jul/2023 12:45:57] "[33mGET /null.gif HTTP/1.1[0m" 404 -
+127.0.0.1 - - [28/Jul/2023 12:45:57] "[36mGET /4.gif HTTP/1.1[0m" 304 -
+127.0.0.1 - - [28/Jul/2023 12:46:13] "GET / HTTP/1.1" 200 -
