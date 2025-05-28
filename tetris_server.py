@@ -4,7 +4,8 @@ import asyncio;
 import numpy as np;
 from random import randint
 
-global ALL_SOCKET, ALL_SOCKET_IDX, SOCKET_AUTOINCRE  # Specify all connected sockets as global variables.
+# Specify all connected sockets as global variables.
+global ALL_SOCKET, ALL_SOCKET_IDX, SOCKET_AUTOINCRE  
 ALL_SOCKET = []
 ALL_SOCKET_IDX = []
 SOCKET_AUTOINCRE = 0
@@ -16,7 +17,8 @@ isGameEnded = False
 async def accept(websocket, path):
     global SOCKET_AUTOINCRE, ALL_SOCKET, ALL_SOCKET_IDX
     print("connected from client")
-    websocket.idx = SOCKET_AUTOINCRE  # Keep the unique number of the current socket (increased by 1) in idx.
+    # Keep the unique number of the current socket (increased by 1) in idx.
+    websocket.idx = SOCKET_AUTOINCRE  
     SOCKET_AUTOINCRE += 1
     websocket.connected = True
     websocket.tetrisHTML = ""
@@ -50,8 +52,8 @@ async def accept(websocket, path):
                 for sc in ALL_SOCKET:
                     if sc.isReady != True:
                         isAllReady = False
-
-                if isAllReady == True:  # All sockets are ready.
+                # All sockets are ready.
+                if isAllReady == True: 
                     await stanby()
             elif data["code"] == "send_tetris_html":
                 await sendTetrisHTML(data["socket_idx"])
@@ -88,12 +90,13 @@ async def accept(websocket, path):
 
                 findIdxFromAllSocket(data["socket_idx"]).tetrisHTML = data["html"]
 
-
-        except websockets.ConnectionClosed:  # When socket disconnected.
+        # When socket disconnected.
+        except websockets.ConnectionClosed: 
             websocket.connected = False
             continue
         finally:
-            if websocket.connected != True:  # Disconnected status.
+             # Disconnected status.
+            if websocket.connected != True: 
                 for idx, val in enumerate(ALL_SOCKET_IDX):
                     if val == websocket.idx:
                         del ALL_SOCKET_IDX[idx]
@@ -106,7 +109,8 @@ async def strike(attacker, cnt):
     data = json.dumps(data)
 
     for sc in ALL_SOCKET:
-        if sc.idx != attacker:  # Exclude attackers.
+        # Exclude attackers.
+        if sc.idx != attacker:  
             await sc.send(data)
 
 
