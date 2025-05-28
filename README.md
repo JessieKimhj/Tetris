@@ -20,11 +20,14 @@ A real-time multiplayer Tetris game implemented using WebSocket and Flask. Playe
 - Python 3.x
 - pip (Python package manager)
 
-  ### Installation & Running the Game for MacOS
+### Installation & Running the Game for MacOS
 
 ```bash
 pip install flask websockets numpy
-flask --app start run --host=0.0.0.0 --port=80  
+python -m flask --app start run
+```
+### On the 2nd Terminal
+```bash
 python tetris_server.py
 ```
 will be running on your localhost!
