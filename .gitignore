@@ -29,6 +29,8 @@ pyvenv.cfg
 
 # Logs and Output
 *.log
+
+
 nohup.out
 *.out
 

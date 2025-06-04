@@ -30,6 +30,6 @@ python -m flask --app start run
 ```bash
 python tetris_server.py
 ```
-will be running on your localhost!
+will be running on your localhost 5000
 
 

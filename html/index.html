@@ -1,702 +1,800 @@
+<!DOCTYPE html>
 <html>
     <head>
-        <title>TETRIS GAME</title>
+        <title>TETRIS BATTLE</title>
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
         <style>
-            .block {
-                width:25px;
-                height:25px;
-                border-bottom:1px solid #98a3f7;
-                border-right:1px solid #98a3f7;
-                background-color:skyblue;
+            body {
+                font-family: 'Arial', sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: flex-start; /* Align items to the start of the flex container */
+                min-height: 100vh;
+                margin: 0;
+                background-color: #f0f0f0;
+                padding-top: 20px; /* Add some padding at the top */
             }
+
+            .container {
+                display: flex;
+                gap: 20px; /* Space between game area and player info */
+                align-items: flex-start; /* Align items to the start for differing heights */
+            }
+
+            .game-area {
+                border: 5px solid #333;
+                background-color: #fff;
+                box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            }
+
+            table {
+                border-collapse: collapse;
+            }
+
+            .block {
+                width: 25px;
+                height: 25px;
+                border: 1px solid #ddd; /* Lighter border for blocks */
+                background-color: skyblue; /* Default block color */
+            }
+
+            /* Tetromino colors */
+            .block-i { background-color: #00f0f0; } /* Cyan */
+            .block-j { background-color: #0000f0; } /* Blue */
+            .block-l { background-color: #f0a000; } /* Orange */
+            .block-o { background-color: #f0f000; } /* Yellow */
+            .block-s { background-color: #00f000; } /* Green */
+            .block-t { background-color: #a000f0; } /* Purple */
+            .block-z { background-color: #f00000; } /* Red */
+
+
             .space {
-                width:25px;
-                height:25px;
-                border-bottom:1px solid #98a3f7;
-                border-right:1px solid #98a3f7;
-                background-color:white;
+                width: 25px;
+                height: 25px;
+                border: 1px solid #eee; /* Lighter border for spaces */
+                background-color: #fff;
+            }
+
+            .player-info-area {
+                display: flex;
+                flex-direction: column; /* Stack player info vertically */
+                gap: 15px; /* Space between player info sections */
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 0 15px rgba(0,0,0,0.1);
+                min-width: 250px; /* Minimum width for player info area */
+            }
+            
+            .player-info-area h2 {
+                margin-top: 0;
+                color: #333;
+                border-bottom: 2px solid #eee;
+                padding-bottom: 10px;
+            }
+
+            .player-section {
+                 margin-bottom: 10px;
+            }
+
+            .player-section h3 {
+                margin-top: 0;
+                margin-bottom: 5px;
+                color: #555;
+            }
+
+            .player-status {
+                font-size: 0.9em;
+                color: #777;
+            }
+            
+            .player-status.ready {
+                color: green;
+                font-weight: bold;
             }
 
             .block_small {
-                width:8px;
-                height:8px;
-                border-bottom:1px solid #98a3f7;
-                border-right:1px solid #98a3f7;
-                background-color:skyblue;
+                width: 10px; /* Adjusted for better visibility */
+                height: 10px;
+                border: 1px solid #ccc;
+                background-color: skyblue; /* Default small block color */
             }
+            .block_small-i { background-color: #00f0f0; }
+            .block_small-j { background-color: #0000f0; }
+            .block_small-l { background-color: #f0a000; }
+            .block_small-o { background-color: #f0f000; }
+            .block_small-s { background-color: #00f000; }
+            .block_small-t { background-color: #a000f0; }
+            .block_small-z { background-color: #f00000; }
+
             .space_small {
-                width:8px;
-                height:8px;
-                border-bottom:1px solid #98a3f7;
-                border-right:1px solid #98a3f7;
-                background-color:white;
+                width: 10px; /* Adjusted for better visibility */
+                height: 10px;
+                border: 1px solid #f0f0f0;
+                background-color: white;
             }
-/*
-	Define by Direction
-        □□□□   :  "0:0", "1:0", "2:0", "3:0"        "0:0", "0:1", "0:2", "0:3"
 
-        □
-        □□     :  "0:0", "1:0", "-1:0"          "0:1", "0:0", "1:0"          "0:0", "1:0", "1:1"          "0:1", "1:1", "1:0"
+            button {
+                background-color: #4CAF50; /* Green */
+                border: none;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+            }
 
-         □        "0:1", "1:1", "1:0"           "0:0", "0:1", "1:1"          "0:1", "0:0", "1:0"          "0:0", "1:0", "1:1"
-        □□     :
+            button:hover {
+                background-color: #45a049;
+            }
 
-        □
-        □□□    :   "0:1", "1:1", "2:1", "0:0"            "0:2", "0:1", "0:0", "1:0"            "0:0", "1:0", "2:0", "2:1"            "0:2", "1:2", "1:1", "1:0"
+            button:disabled {
+                background-color: #ccc;
+                cursor: not-allowed;
+            }
 
-          □
-        □□□    :   "0:1", "1:1", "2:1", "2:0"            "1:-1", "1:0", "1:1", "2:1"            "-1:1", "-1:0", "0:0", "1:0"            "0:-1", "1:-1", "1:0", "1:1"
+            .status-message {
+                font-size: 1.2em;
+                font-weight: bold;
+                color: #333;
+                margin-bottom: 10px;
+                text-align: center;
+            }
 
-        □□
-        □□     :   "0:1", "1:1", "0:0", "1:0"
+            #myInfo, #friendsInfo {
+                border: 1px solid #ddd;
+                padding: 10px;
+                border-radius: 5px;
+                margin-bottom:10px;
+            }
+            #friendsInfo div { /* Style for each friend's info */
+                padding: 5px;
+                border-bottom: 1px dashed #eee;
+            }
+            #friendsInfo div:last-child {
+                border-bottom: none;
+            }
 
-*/
         </style>
-        <script>
-            var ALL_BLOCK = new Array();
-            var BLOCK_POSITION_SHAPE = 0; //Angular shapes within the same block.
-            ALL_BLOCK[0] = [["0:0", "1:0", "2:0", "3:0"],["0:0", "0:1", "0:2", "0:3"]];
-            ALL_BLOCK[1] = [["0:0", "0:1", "1:1"],["0:1", "0:0", "1:0"],["0:0", "1:0", "1:1"],["1:0", "0:1", "1:1"]];
-            ALL_BLOCK[2] = [["0:1", "1:1", "1:0"],["0:-1", "0:0", "1:0"],["0:1", "0:0", "1:0"],["0:-1", "1:-1", "1:0"]];
-            ALL_BLOCK[3] = [["0:1", "1:1", "2:1", "0:0"],["0:1", "0:0", "0:-1", "1:-1"],["0:-2", "1:-2", "2:-2", "2:-1"],["0:0", "0:1", "-1:2", "0:2"]];
-            ALL_BLOCK[4] = [["0:1", "1:1", "2:1", "2:0"],["1:-1", "1:0", "1:1", "2:1"],["-1:1", "-1:0", "0:0", "1:0"],["0:-1", "1:-1", "1:0", "1:1"]];
-            ALL_BLOCK[5] = [["1:1", "2:1", "1:0", "2:0"]];
+    </head>
+    <body>
+        <div class="container">
+            <div class="game-area">
+                <table id="tetrisTable" style="border:1px solid black;">
+                    <!-- Game board will be generated here by JavaScript -->
+                </table>
+            </div>
 
+            <div class="player-info-area">
+                <h2>Game Info</h2>
+                <div class="status-message" id="statusMessage">Connecting...</div>
+
+                <div id="myInfo" class="player-section">
+                    <h3>My Status</h3>
+                    <!-- My info will be populated here -->
+                </div>
+                
+                <button id="readyButton" onclick="iamReady();">I am Ready</button>
+                
+                <div id="friendsInfo" class="player-section">
+                    <h3>Players</h3>
+                    <!-- Friends' info will be populated here -->
+                </div>
+                
+                <div>
+                    <h3>Next Block</h3>
+                    <table id="nextBlockTable" style="border:1px solid black; margin-top:5px;">
+                        <!-- Next block preview will be generated here -->
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+        <script>
+            // --- Existing JavaScript Code (with modifications for new design) ---
+            
+            // Block definitions (colors will be applied via CSS classes)
+            var ALL_BLOCK_SHAPES = [
+                { name: 'i', colorClass: 'block-i', smallColorClass: 'block_small-i', shapes: [["0:0", "1:0", "2:0", "3:0"], ["0:0", "0:1", "0:2", "0:3"]] },
+                { name: 'j', colorClass: 'block-j', smallColorClass: 'block_small-j', shapes: [["0:0", "0:1", "1:1"], ["0:1", "0:0", "1:0"], ["0:0", "1:0", "1:1"], ["1:0", "0:1", "1:1"]] },
+                { name: 'l', colorClass: 'block-l', smallColorClass: 'block_small-l', shapes: [["0:1", "1:1", "1:0"], ["0:-1", "0:0", "1:0"], ["0:1", "0:0", "1:0"], ["0:-1", "1:-1", "1:0"]] },
+                { name: 'o', colorClass: 'block-o', smallColorClass: 'block_small-o', shapes: [["0:0", "1:0", "0:1", "1:1"]] }, // Corrected 'o' block
+                { name: 's', colorClass: 'block-s', smallColorClass: 'block_small-s', shapes: [["1:0", "2:0", "0:1", "1:1"], ["0:0", "1:0", "1:1", "2:1"]] },
+                { name: 't', colorClass: 'block-t', smallColorClass: 'block_small-t', shapes: [["1:0", "0:1", "1:1", "2:1"], ["0:0", "0:1", "1:1", "0:2"], ["0:0", "1:0", "2:0", "1:1"], ["1:0", "0:1", "1:1", "1:2"]] },
+                { name: 'z', colorClass: 'block-z', smallColorClass: 'block_small-z', shapes: [["0:0", "1:0", "1:1", "2:1"], ["1:0", "0:1", "1:1", "0:2"]] }
+            ];
+            
+            var BLOCK_POSITION_SHAPE = 0;
             var ALL_TD = [];
-            function makeBlock(col, row) {
-                for(var i=1; i <= row; i++) {  //Height
-                    document.write("<tr>");
+            var GAME_COLS = 12;
+            var GAME_ROWS = 22;
+            var NEXT_BLOCK_PREVIEW_SIZE = 4; // For a 4x4 preview grid
+
+            function makeGameBoard(cols, rows) {
+                var table = document.getElementById("tetrisTable");
+                table.innerHTML = ""; // Clear previous board
+                for (var i = 1; i <= rows; i++) {
+                    var tr = document.createElement("tr");
                     var X_array = [];
-                    for(var j=1; j <= col; j++) {   //Width
-                        var block_html = `
-                            <td class="space" id="${j}_${i}" x="${j}" y="${i}">
-                            </td>
-                        `;
-                        document.write(block_html);
+                    for (var j = 1; j <= cols; j++) {
+                        var td = document.createElement("td");
+                        td.className = "space";
+                        td.id = `${j}_${i}`;
+                        td.setAttribute("x", j);
+                        td.setAttribute("y", i);
+                        tr.appendChild(td);
                         X_array.push(j + "_" + i);
                     }
-                    document.write("</tr>");
+                    table.appendChild(tr);
                     ALL_TD.push(X_array);
                 }
             }
 
-            function moveBlock(gubun) {
-                if(NOW_BLOCK) {
-                    if(gubun == "UP") { //Shape changing function.
-                        if(ALL_BLOCK[NOW_BLOCK.shape].length == 1) {
-                            return false;
-                        }
-
-                        var is_stop = false;
-                        var new_current_blocks = [];
-                        BLOCK_POSITION_SHAPE++;
-                        if(!ALL_BLOCK[NOW_BLOCK.shape][BLOCK_POSITION_SHAPE]) {
-                            BLOCK_POSITION_SHAPE = 0;
-                        }
-                        for(var i=0; i < ALL_BLOCK[NOW_BLOCK.shape][BLOCK_POSITION_SHAPE].length; i++) {
-                            var current_standard_x = NOW_BLOCK.current_blocks[0].attr("x");
-                            var current_standard_y = NOW_BLOCK.current_blocks[0].attr("y");
-
-                            var block_xy = ALL_BLOCK[NOW_BLOCK.shape][BLOCK_POSITION_SHAPE][i].split(":");
-                            var new_x  = Number(block_xy[0]) + Number(current_standard_x);
-                            var new_y  = Number(block_xy[1]) + Number(current_standard_y);
-                            var new_id = new_x + "_" + new_y;
-
-                            if($("#" + new_id).length == 0) { //Dead End.
-                                is_stop = true;
-                            }
-                            else {
-                                if($("#"+new_id).attr("class") == "block" && !isExistNowBlock(new_id)) {
-                                    is_stop = true;
-                                }
-                            }
-
-
-                            new_current_blocks.push($("#" + new_id));
-                        }
-
-                        if(is_stop == true) {
-                            return false;
-                        }
-
-
-                        NOW_BLOCK.current_blocks.forEach(function(item, index){
-                            item.attr("class", "space");
-                        })
-
-                        new_current_blocks.forEach(function(item, index){
-                            item.attr("class", "block");
-                        })
-
-                        NOW_BLOCK.current_blocks = new_current_blocks;
+            function makeNextBlockPreview(size) {
+                var table = document.getElementById("nextBlockTable");
+                table.innerHTML = ""; // Clear previous preview
+                for (var i = 0; i < size; i++) {
+                    var tr = document.createElement("tr");
+                    for (var j = 0; j < size; j++) {
+                        var td = document.createElement("td");
+                        td.className = "space_small"; // Use small class for preview
+                        td.id = `next_${j}_${i}`;
+                        tr.appendChild(td);
                     }
-                    else if(gubun == "RIGHT") {
-
-                        var new_current_blocks = [];
-                        var is_stop = false;
-                        NOW_BLOCK.current_blocks.forEach(function(item, index){
-                            var new_id = (Number(item.attr("x")) + 1) + "_" + item.attr("y");
-                            if($("#"+new_id).length == 0) {
-                                is_stop = true;
-                            }
-                            else {
-                                if($("#"+new_id).attr("class") == "block" && !isExistNowBlock(new_id)) {
-                                    is_stop = true;
-                                }
-                            }
-
-                            new_current_blocks.push($("#"+new_id));
-                        })
-
-                        if(is_stop == true) {  //Stop if it's a blocked road.
-                            return false;
-                        }
-
-
-                        NOW_BLOCK.current_blocks.forEach(function(item, index){
-                            item.attr("class","space");
-                        })
-                        new_current_blocks.forEach(function(item, index){
-                            item.attr("class","block");
-                        })
-                        NOW_BLOCK.current_blocks = new_current_blocks;
-                    }
-                    else if(gubun == "LEFT") {
-                        var new_current_blocks = [];
-                        var is_stop = false;
-                        NOW_BLOCK.current_blocks.forEach(function(item, index){
-                            var new_id = (Number(item.attr("x")) - 1) + "_" + item.attr("y");
-                            if($("#"+new_id).length == 0) {
-                                is_stop = true;
-                            }
-                            else {
-                                if($("#"+new_id).attr("class") == "block" && !isExistNowBlock(new_id)) {
-                                    is_stop = true;
-                                }
-                            }
-                            new_current_blocks.push($("#"+new_id));
-                        })
-
-                        if(is_stop == true) {  //Stop if it's a blocked road.
-                            return false;
-                        }
-
-                        NOW_BLOCK.current_blocks.forEach(function(item, index){
-                            item.attr("class","space");
-                        })
-                        new_current_blocks.forEach(function(item, index){
-                            item.attr("class","block");
-                        })
-                        NOW_BLOCK.current_blocks = new_current_blocks;
-                    }
-                    else if(gubun == "DOWN") {
-                        moveDown();
-                    }
-                    else if(gubun == "SPACEBAR") {
-                        while(moveDown() == true) {
-
-                        }
-                    }
-
+                    table.appendChild(tr);
                 }
             }
-
-            function moveDown() {
-                var new_current_blocks = [];
-                var is_stop = false;
-                NOW_BLOCK.current_blocks.forEach(function(item, index){
-                    var new_id = item.attr("x") + "_" + (Number(item.attr("y"))+1);
-                    if($("#"+new_id).length == 0) { //Dead End.
-                        is_stop = true;
-                    }
-                    else {
-                        if($("#"+new_id).attr("class") == "block" && !isExistNowBlock(new_id)) {
-                            is_stop = true;
-                        }
-                    }
-                    new_current_blocks.push($("#"+new_id));
-                })
-
-                var return_value = true;
-                if(is_stop == true) {  //Stop if it's a blocked road.
-                    return_value = false;
-
-
-                    //Check if the game is in END situation -> Check the current block position and if any of them have a y value of 1 or less, exit situation.
-                    NOW_BLOCK.current_blocks.forEach(function(item, index){
-                        var y = item.attr("y");
-                        if(y <= 1) //Game End Status.
-                        {
-                            clearInterval(interval);
-                            $("#divEND").show();
-                            let data = {"code": "game_end", "socket_idx": my_socket_idx}
-                            sendMessage(data)
-                            //alert("Game Ended!")
-                            return false;
-                        }
-                    })
-                } else {
-                    NOW_BLOCK.current_blocks.forEach(function(item, index){
-                    item.attr("class","space");
-                    })
-                    new_current_blocks.forEach(function(item, index){
-                        item.attr("class","block");
-                    })
-                    NOW_BLOCK.current_blocks = new_current_blocks;
-                }
-                if(!return_value) {
-                    checkAllLine();
-                    newBlockRequest();
-                }
-                return return_value;
-            }
-
-            var sending_block_idx = 1
-            function newBlockRequest() {
-                //Bring the blocks in random order.
-                BLOCK_POSITION_SHAPE = 0;
-                sending_block_idx++;
-
-                NOW_BLOCK.shape = NEXT_BLOCK_SHAPE;
-                NEXT_BLOCK_SHAPE = null;
-                NOW_BLOCK.current_blocks = diplayBlock(NOW_BLOCK);
-
-                showNextBlock();
-
-                let data = {"code": "newblock_request", "socket_idx": my_socket_idx, "sending_block_idx": sending_block_idx}
-                sendMessage(data)
-            }
-
-            function checkAllLine() {
-                var cntSuccessLine = 0;
-                for(var row=ALL_TD.length-1; row >=0; row--) {
-                    var is_all_correct = true;
-                    for(var col=0; col < ALL_TD[row].length; col++) {
-                        var this_id = ALL_TD[row][col];
-                        var this_obj = $("#"+this_id);
-                        if(this_obj.attr("class") == "space") {
-                            is_all_correct = false;
-                        }
-                    }
-
-                    if(is_all_correct) {
-                        //row
-                        for(var k=row; k > 0; k--) {
-                            for(var j=0; j < ALL_TD[k].length; j++) {
-                                var this_id = ALL_TD[k][j];
-                                var this_obj = $("#"+this_id);
-
-                                var upon_id = ALL_TD[k-1][j];
-                                var upon_obj = $("#"+upon_id);
-                                var upon_obj_class = upon_obj.attr("class")
-
-                                this_obj.attr("class", upon_obj_class);
-
-                                if(upon_obj.length > 0) {
-                                    upon_obj.attr("class", "space");
-                                }
-                            }
-                        }
-                        //If we run this far, we'll turn the entire current line into the top line. Top row changed to white.
-                        row++;
-
-                        for(var j=0; j < ALL_TD[0].length; j++) {
-                            var this_id = ALL_TD[0][j];
-                            var this_obj = $("#"+this_id);
-                            this_obj.attr("class", "space");
-                        }
-
-                        //Add 100 points for each line removal
-                        var current_score = $("#score").html();
-                        current_score = Number(current_score) + 100;
-                        $("#score").html(current_score);
-
-                        if(current_score % 1000 == 0) {
-                            //Raise the level
-                            var current_level = $("#level").html();
-                            current_level = Number(current_level) + 1;
-                            $("#level").html(current_level);
-
-                            interval_miliseconds = interval_miliseconds - 200;
-                            clearInterval(interval);
-                            intervalDown();
-                        }
-                        cntSuccessLine++;
-                    }
-                }
-
-                if(cntSuccessLine >= 3) {
-                    var strikeCnt = cntSuccessLine-2;
-                    let data = {"code": "strike", "count": strikeCnt, "attacker": my_socket_idx}
-                    sendMessage(data)
-                }
-            }
-
-            function isExistNowBlock(id) {
-                var is_exist = false;
-                NOW_BLOCK.current_blocks.forEach(function(item, index){
-                    if(item.attr("id") == id) {
-                        is_exist = true;
-                    }
-                });
-
-                return is_exist;
-            }
-
+            
+            // --- Start WebSocket and Game Logic (adapted from original) ---
             var websocket = null;
-            var my_socket_idx = null;
-            var all_websocket = [];
-            var IS_MY_GAME_ENDED = false;
-            function socketConnect() {
-                websocket = new WebSocket("ws://localhost:8080");
-                websocket.onopen = function() {
-                    console.log("connected");
+            var my_socket_idx = -1;
+            var all_websocket_info = []; // Store {idx, alias, isReady, tetrisHTML}
+            var NOW_BLOCK = null;       // {shape_idx, current_blocks, colorClass, smallColorClass}
+            var NEXT_BLOCK_SHAPE_IDX = -1;
+            var isGamePlaying = false;
+            var gameInterval = null;
+
+            var sending_block_idx = 0; //블록 인덱스.
+
+            $(document).ready(function(){
+                makeGameBoard(GAME_COLS, GAME_ROWS);
+                makeNextBlockPreview(NEXT_BLOCK_PREVIEW_SIZE);
+
+                var alias = prompt("Please enter your alias", "Player" + Math.floor(Math.random() * 1000));
+                if (!alias) {
+                    alias = "Anonymous";
                 }
+                $("#myInfo").html(`<h3>My Status</h3><div>ID: ${alias} (Connecting...)</div>`);
+
+                websocket = new WebSocket("ws://localhost:8080");
+
+                websocket.onopen = function() {
+                    $("#statusMessage").text("Connected to server. Waiting for ID...");
+                    // Server will send my_socket_idx
+                };
 
                 websocket.onmessage = function(e) {
-                    let message = JSON.parse(e.data);
+                    var message = JSON.parse(e.data);
+                    console.log("Received: ", message);
 
-                    switch(message.code) {
-                        case "my_socket_idx" : //Getting the own socket idx.
-                            my_socket_idx = message.socket_idx;
-                        break;
-                        case "all_friends" :
-                            friendsSetting(message.sockets);
-                        break;
-                        case "friend_ready" :
-                            let finded_friend = all_websocket.find((element, index, arr) => element.idx === message.socket_idx);
-                            finded_friend.ready = true;
-                            $("#PLAYER"+finded_friend.alias).html("READY");
-                        break;
-                        case "newblock" :
-                            newBlock(message.next_block, message.now_block);
-                        break;
-                        case "attack_counter" :
-                            for(var kk=0; kk < message.count; kk++) {
-                                oneRowAttack()
-                            }
-                        break;
-                        case "countdown" :  //Countdown.
-                            //message.count
-                            $("#divCountDown").html(message.count)
-                            $("#divCountDown").show()
-                            setTimeout(function(){$("#divCountDown").hide();},500)
-                        break;
-                        case "stanby" :  //Game Start.
-                            gameStart();
-                        break;
-                        case "newblock_response" :
-                            newblockResponse(message.next_block);
-                        break;
-                        case "friend_game_end" :
-                            let finded_friend2 = all_websocket.find((element, index, arr) => element.idx === message.socket_idx);
-                            $("#PLAYER" + finded_friend2.alias).html("<span style='color:red'>DEAD</span>");
-                            IS_MY_GAME_ENDED = true
-                        break;
-                        case "game_finish" :
-                            let finded_friend3 = all_websocket.find((element, index, arr) => element.idx === message.winnerIdx);
-                            if(finded_friend3) {
-                                $("#PLAYER" + finded_friend3.alias).html("<span style='color:red; font-size:24px'>WIN!</span>");
-                            }
-
-                            if(my_socket_idx == message.winnerIdx) {
-                                $("#divEND").html("WINNER!");
-                                $("#divEND").css("color", "blue");
-                                $("#divEND").css("font-size", "24px");
-
-                                clearInterval(interval);
-                                clearInterval(interval_send_html);
-                                $("#divEND").show();
-                            }
-                        break;
-                        case "friends_now_html" :
-                            let all_friends_html = message.friends_tetris_html;
-                            for(var i=0; i < all_friends_html.length; i++) {
-                                var friend = all_friends_html[i];
-                                //friend.idx
-                                let finded_friend = all_websocket.find((element, index, arr) => element.idx === friend.idx);
-                                if(finded_friend) {
-                                    $("#PLAYER" + finded_friend.alias).html(friend.html);
-                                }
-                            }
-                        break;
+                    if(message.code == "my_socket_idx") {
+                        my_socket_idx = message.socket_idx;
+                        $("#myInfo").html(`<h3>My Status</h3><div id='my-status-${my_socket_idx}'>ID: ${alias} (#${my_socket_idx}) <span class='player-status'>Not Ready</span></div>`);
+                        $("#statusMessage").text("Enter your alias and click 'I am Ready'.");
                     }
-                }
-            }
-
-			function oneRowAttack() {
-                //Take care of it one by one from the top (excluding the top row).
-                for(var row=1; row < ALL_TD.length; row++) {
-                    //row
-                    for(var j=0; j < ALL_TD[row].length; j++) {
-                        var this_id = ALL_TD[row][j];
-                        var this_obj = $("#"+this_id);
-                        var this_obj_class = this_obj.attr("class")
-
-                        if(!isContainNowBlock((j+1), (row+1))) {
-                            var upon_id = ALL_TD[row-1][j];
-                            var upon_obj = $("#"+upon_id);
-                            var upon_obj_class = upon_obj.attr("class")
-
-                            upon_obj.attr("class", this_obj_class);
+                    else if(message.code == "all_friends") { // Receive all socket information
+                        all_websocket_info = []; // Reset
+                         $("#friendsInfo").html("<h3>Players</h3>"); // Clear previous friend list
+                        message.sockets.forEach(function(sc_idx) {
+                            if (sc_idx !== my_socket_idx) {
+                                 all_websocket_info.push({idx: sc_idx, alias: `Player #${sc_idx}`, isReady: false, tetrisHTML: ""});
+                                 $("#friendsInfo").append(`<div id='friend-status-${sc_idx}'>Player #${sc_idx} <span class='player-status'>Not Ready</span><div id='friend-tetris-${sc_idx}' style='margin-top:5px;'></div></div>`);
+                            }
+                        });
+                    }
+                    else if(message.code == "friend_ready") {
+                        var friend = all_websocket_info.find(f => f.idx === message.socket_idx);
+                        if (friend) {
+                            friend.isReady = true;
+                            $(`#friend-status-${message.socket_idx} .player-status`).text("Ready").addClass("ready");
                         }
                     }
+                     else if(message.code == "stanby") { //All players are ready
+                        $("#statusMessage").text("All players ready! Game starting...");
+                        $("#readyButton").prop("disabled", true);
+                        isGamePlaying = false; // Game hasn't started with blocks yet, just countdown
+                    }
+                    else if(message.code == "countdown") {
+                        $("#statusMessage").text(message.count);
+                         if (message.count === "Start!") {
+                            isGamePlaying = true;
+                            if(my_socket_idx != -1) { // Request first block if I'm a valid player
+                                 requestNewBlock(); // Request the very first block
+                            }
+                            gameLoop();
+                        }
+                    }
+                    else if(message.code == "newblock") { // Server sends new block info
+                        NEXT_BLOCK_SHAPE_IDX = message.next_block;
+                        var currentBlockShapeIdx = message.now_block;
+                        
+                        console.log("New Block Received - Now:", currentBlockShapeIdx, "Next:", NEXT_BLOCK_SHAPE_IDX);
+
+                        if (currentBlockShapeIdx !== undefined && currentBlockShapeIdx < ALL_BLOCK_SHAPES.length) {
+                             spawnNewBlock(currentBlockShapeIdx);
+                        }
+                        if (NEXT_BLOCK_SHAPE_IDX !== undefined && NEXT_BLOCK_SHAPE_IDX < ALL_BLOCK_SHAPES.length) {
+                            drawNextBlockPreview(NEXT_BLOCK_SHAPE_IDX);
+                        }
+                    }
+                     else if(message.code == "newblock_response") { // Server sends new block info after strike
+                        NEXT_BLOCK_SHAPE_IDX = message.next_block;
+                         if (NEXT_BLOCK_SHAPE_IDX !== undefined && NEXT_BLOCK_SHAPE_IDX < ALL_BLOCK_SHAPES.length) {
+                            drawNextBlockPreview(NEXT_BLOCK_SHAPE_IDX);
+                        }
+                    }
+                    else if (message.code === "friends_now_html") {
+                        message.friends_tetris_html.forEach(function(friend_data){
+                            if (friend_data.idx !== my_socket_idx) {
+                                var friendDisplay = $(`#friend-tetris-${friend_data.idx}`);
+                                if (friendDisplay.length) {
+                                    friendDisplay.html(friend_data.html); // Display friend's tetris board
+                                }
+                            }
+                        });
+                    }
+                     else if (message.code === "attack_counter") {
+                        addGarbageLines(message.count);
+                    }
+                    else if (message.code === "game_finish") {
+                        isGamePlaying = false;
+                        clearInterval(gameInterval);
+                        var winnerMessage = "Game Over! ";
+                        if (message.winnerIdx === -1) {
+                            winnerMessage += "It's a draw or no one left!";
+                        } else if (message.winnerIdx === my_socket_idx) {
+                            winnerMessage += "You are the Winner!";
+                        } else {
+                            winnerMessage += `Player #${message.winnerIdx} is the Winner!`;
+                        }
+                        $("#statusMessage").text(winnerMessage);
+                        $("#readyButton").text("Play Again?").prop("disabled", false);
+                    }
+                     else if (message.code === "friend_game_end") {
+                        var friend = all_websocket_info.find(f => f.idx === message.socket_idx);
+                        if (friend) {
+                             $(`#friend-status-${message.socket_idx}`).append(" (Game Over)");
+                        }
+                    }
+
+
+                };
+
+                websocket.onclose = function() {
+                    $("#statusMessage").text("Disconnected from server.");
+                    isGamePlaying = false;
+                    clearInterval(gameInterval);
+                };
+
+                websocket.onerror = function(error) {
+                    $("#statusMessage").text("Connection Error: " + error.message);
+                    console.error("WebSocket Error: ", error);
+                };
+                
+                $(document).keydown(function(e) {
+                    if (!isGamePlaying || !NOW_BLOCK) return;
+                    switch(e.which) {
+                        case 37: // left
+                            moveBlock("LEFT");
+                            break;
+                        case 38: // up
+                            moveBlock("UP");
+                            break;
+                        case 39: // right
+                            moveBlock("RIGHT");
+                            break;
+                        case 40: // down
+                            moveBlock("DOWN");
+                            break;
+                        case 32: // space
+                            moveBlock("SPACEBAR");
+                            e.preventDefault(); // Prevent page scrolling
+                            break;
+                        default: return;
+                    }
+                });
+            });
+
+            function iamReady() {
+                if (my_socket_idx !== -1 && websocket && websocket.readyState === WebSocket.OPEN) {
+                    var msg = {"code": "iam_ready", "socket_idx": my_socket_idx};
+                    websocket.send(JSON.stringify(msg));
+                    $(`#my-status-${my_socket_idx} .player-status`).text("Ready").addClass("ready");
+                    $("#readyButton").prop("disabled", true).text("Waiting for others...");
+                    $("#statusMessage").text("You are Ready! Waiting for other players...");
+                } else {
+                    $("#statusMessage").text("Cannot send ready signal. Not connected or no ID.");
+                }
+            }
+            
+            function requestNewBlock() {
+                if (websocket && websocket.readyState === WebSocket.OPEN && my_socket_idx !== -1) {
+                    sending_block_idx++; // Increment before sending
+                    var msg = {"code": "newblock_request", "socket_idx": my_socket_idx, "sending_block_idx": sending_block_idx};
+                    console.log("Requesting new block with index:", sending_block_idx);
+                    websocket.send(JSON.stringify(msg));
+                }
+            }
+
+            function spawnNewBlock(shapeIndex) {
+                console.log("Spawning block with shape index:", shapeIndex);
+                if (shapeIndex === undefined || shapeIndex < 0 || shapeIndex >= ALL_BLOCK_SHAPES.length) {
+                    console.error("Invalid shapeIndex for spawnNewBlock:", shapeIndex);
+                    gameOver(); // Potentially end game if block data is bad
+                    return;
                 }
 
-                //Fill the last line with blocks.
-                var space_td = rand(0, ALL_TD[ALL_TD.length - 1].length-1);
-                for(var j=0; j < ALL_TD[ALL_TD.length - 1].length; j++) {
-                    var this_id = ALL_TD[ALL_TD.length - 1][j];
-                    var this_obj = $("#"+this_id);
-                    var this_obj_class = this_obj.attr("class")
+                BLOCK_POSITION_SHAPE = 0; // Reset rotation
+                var blockData = ALL_BLOCK_SHAPES[shapeIndex];
+                var initialShape = blockData.shapes[BLOCK_POSITION_SHAPE];
+                var startX = Math.floor(GAME_COLS / 2) - 1; // Centered
+                var current_blocks_arr = [];
+                var canSpawn = true;
 
-                    if(j == space_td) {
-                        this_obj.attr("class", "space");
+                for (var i = 0; i < initialShape.length; i++) {
+                    var parts = initialShape[i].split(":");
+                    var x = parseInt(parts[0]) + startX;
+                    var y = parseInt(parts[1]) + 1; // Start at row 1
+                    var cellId = x + "_" + y;
+                    var cell = $(`#${cellId}`);
+
+                    if (!cell.length || cell.attr("class") === "block") { // Check for collision at spawn
+                        canSpawn = false;
+                        break;
                     }
-                    else {
-                        this_obj.attr("class", "block");
-                    }
+                    current_blocks_arr.push(cell);
+                }
+
+                if (canSpawn) {
+                    NOW_BLOCK = {
+                        shape_idx: shapeIndex,
+                        current_blocks: current_blocks_arr,
+                        colorClass: blockData.colorClass,
+                        smallColorClass: blockData.smallColorClass
+                    };
+                    NOW_BLOCK.current_blocks.forEach(function(blockCell) {
+                        blockCell.removeClass("space").addClass("block").addClass(NOW_BLOCK.colorClass);
+                    });
+                } else {
+                    console.log("Cannot spawn new block - collision detected.");
+                    gameOver();
                 }
             }
-
-            function isContainNowBlock(x, y) {
-                var is_contained = false;
-                NOW_BLOCK.current_blocks.forEach(function(item, index){
-                    if(x == item.attr("x") && y == item.attr("y")) {
-                        is_contained = true;
-                        return is_contained;
+            
+            function drawNextBlockPreview(shapeIndex) {
+                console.log("Drawing next block preview for shape index:", shapeIndex);
+                 if (shapeIndex === undefined || shapeIndex < 0 || shapeIndex >= ALL_BLOCK_SHAPES.length) {
+                    console.error("Invalid shapeIndex for drawNextBlockPreview:", shapeIndex);
+                    // Clear preview or show error
+                    for(var r=0; r<NEXT_BLOCK_PREVIEW_SIZE; r++) {
+                        for(var c=0; c<NEXT_BLOCK_PREVIEW_SIZE; c++) {
+                            $(`#next_${c}_${r}`).attr("class", "space_small");
+                        }
                     }
-                })
-                return is_contained;
-            }
-            function newblockResponse(next_block) {
-                NEXT_BLOCK_SHAPE = next_block
-                showNextBlock();
-            }
+                    return;
+                }
 
-            function requestTetrisHtml() {
-                let data = {"code": "send_tetris_html", "socket_idx": my_socket_idx}
-                sendMessage(data);
-            }
+                var blockData = ALL_BLOCK_SHAPES[shapeIndex];
+                var shape = blockData.shapes[0]; // Use the first rotation for preview
+                
+                // Clear previous preview
+                for(var r=0; r<NEXT_BLOCK_PREVIEW_SIZE; r++) {
+                    for(var c=0; c<NEXT_BLOCK_PREVIEW_SIZE; c++) {
+                        $(`#next_${c}_${r}`).attr("class", "space_small"); // Clear all classes first
+                    }
+                }
 
-            var interval_send_html = null;
-            function gameStart() {
-               //lower the blocks in every second
-               intervalDown();
+                // Determine offsets to center the block in the preview
+                var minX = 0, minY = 0, maxX = 0, maxY = 0;
+                shape.forEach(function(coord) {
+                    var parts = coord.split(":");
+                    var x = parseInt(parts[0]);
+                    var y = parseInt(parts[1]);
+                    minX = Math.min(minX, x);
+                    minY = Math.min(minY, y);
+                    maxX = Math.max(maxX, x);
+                    maxY = Math.max(maxY, y);
+                });
 
-               interval_send_html = setInterval(() => { requestTetrisHtml(); }, 1000);
-
-                $(document).keydown(function(e){
-                    if(e.which == 38) { //When press the 'Up' key
-                //                        alert("Up")
-                        moveBlock("UP");
-                    }
-                    else if(e.which == 39) {
-                //                        alert("Right")
-                        moveBlock("RIGHT");
-                    }
-                    else if(e.which == 37) {
-                //                        alert("Left")
-                        moveBlock("LEFT");
-                    }
-                    else if(e.which == 40) {
-                //                        alert("Down")
-                        moveBlock("DOWN");
-                    }
-                    else if(e.which == 32) {
-                //                        alert("Space Bar")
-                        moveBlock("SPACEBAR");
+                var offsetX = Math.floor((NEXT_BLOCK_PREVIEW_SIZE - (maxX - minX + 1)) / 2) - minX;
+                var offsetY = Math.floor((NEXT_BLOCK_PREVIEW_SIZE - (maxY - minY + 1)) / 2) - minY;
+                
+                shape.forEach(function(coord) {
+                    var parts = coord.split(":");
+                    var x = parseInt(parts[0]) + offsetX;
+                    var y = parseInt(parts[1]) + offsetY;
+                    if (x >= 0 && x < NEXT_BLOCK_PREVIEW_SIZE && y >= 0 && y < NEXT_BLOCK_PREVIEW_SIZE) {
+                        $(`#next_${x}_${y}`).removeClass("space_small").addClass("block_small").addClass(blockData.smallColorClass);
                     }
                 });
             }
 
-            function friendsSetting(sockets_idx) {
-                let current_idx = 1
-                sockets_idx.forEach(function(sc_idx, index){
-                    if(sc_idx != my_socket_idx) { //If the player is not me.
-                        let alias = current_idx
-                        current_idx++;
-                        all_websocket.push({"idx": sc_idx, "alias": alias, "ready": false})
+            function moveBlock(direction) {
+                if (!NOW_BLOCK || !isGamePlaying) return false;
 
-                        $("#PLAYER"+alias).html("CONNECT")
+                var new_current_blocks = [];
+                var canMove = true;
+
+                if (direction === "UP") { // Rotate
+                     if (ALL_BLOCK_SHAPES[NOW_BLOCK.shape_idx].shapes.length === 1) return false; // O-block
+
+                    var originalRotation = BLOCK_POSITION_SHAPE;
+                    BLOCK_POSITION_SHAPE++;
+                    if (BLOCK_POSITION_SHAPE >= ALL_BLOCK_SHAPES[NOW_BLOCK.shape_idx].shapes.length) {
+                        BLOCK_POSITION_SHAPE = 0;
                     }
-                })
-            }
+                    var newShape = ALL_BLOCK_SHAPES[NOW_BLOCK.shape_idx].shapes[BLOCK_POSITION_SHAPE];
+                    var standard_block = NOW_BLOCK.current_blocks[0]; // Use first block as pivot reference
+                    var standard_x = parseInt(standard_block.attr("x"));
+                    var standard_y = parseInt(standard_block.attr("y"));
 
-            var NOW_BLOCK = new Object();
-            NOW_BLOCK.shape = null;  //Current block form.
-            NOW_BLOCK.current_blocks = null;   //Save the location of the current block.
-            $(document).ready(function(){
-                //Works when memory is loaded.
-                socketConnect();
+                    // Need to adjust standard_x and standard_y based on the pivot of the current rotation
+                    var currentPivot = ALL_BLOCK_SHAPES[NOW_BLOCK.shape_idx].shapes[originalRotation][0].split(":");
+                    standard_x -= parseInt(currentPivot[0]);
+                    standard_y -= parseInt(currentPivot[1]);
 
-				$("#divEND").css("left", $("#TETRIS_CONTAINER").offset().left + "px")
-				$("#divEND").css("top", ($("#TETRIS_CONTAINER").offset().top + 260) + "px")
-				$("#divEND").css("width", $("#TETRIS_CONTAINER").css("width"));
-            });
 
-            //Random Number Generation Function.
-            function rand(min, max) {
-                //Math.random() : JavaScript function that randomly imports numbers between 0 and 1.
-                return Math.floor(Math.random() * (max - min + 1)) + min;
-            }
+                    for (var i = 0; i < newShape.length; i++) {
+                        var parts = newShape[i].split(":");
+                        var x = parseInt(parts[0]) + standard_x;
+                        var y = parseInt(parts[1]) + standard_y;
+                        var cellId = x + "_" + y;
+                        var cell = $(`#${cellId}`);
 
-            var NEXT_BLOCK_SHAPE = null;
-            function newBlock(next_block, now_block) {
-                //Bring blocks at random.
-                BLOCK_POSITION_SHAPE = 0;
+                        if (!cell.length || (cell.attr("class").includes("block") && !isExistNowBlock(cellId))) {
+                            canMove = false;
+                            BLOCK_POSITION_SHAPE = originalRotation; // Revert rotation
+                            break;
+                        }
+                        new_current_blocks.push(cell);
+                    }
 
-                NOW_BLOCK.shape = now_block;
-                NEXT_BLOCK_SHAPE = next_block;
-                NOW_BLOCK.current_blocks = diplayBlock(NOW_BLOCK);
+                } else { // Horizontal or Downward movement
+                    var dx = 0, dy = 0;
+                    if (direction === "LEFT") dx = -1;
+                    else if (direction === "RIGHT") dx = 1;
+                    else if (direction === "DOWN") dy = 1;
+                    else if (direction === "SPACEBAR") { // Hard drop
+                        while(moveBlock("DOWN")) { /* keep moving down */ }
+                        return true; // moveDown will handle landing
+                    }
 
-                showNextBlock();
-            }
+                    for (var i = 0; i < NOW_BLOCK.current_blocks.length; i++) {
+                        var item = NOW_BLOCK.current_blocks[i];
+                        var new_x = parseInt(item.attr("x")) + dx;
+                        var new_y = parseInt(item.attr("y")) + dy;
+                        var cellId = new_x + "_" + new_y;
+                        var cell = $(`#${cellId}`);
 
-            function showNextBlock() {
-                $("#divNextImg").html(`<img src="${NEXT_BLOCK_SHAPE}.gif" style="width:100%; height:200px">`);
-            }
-
-            var interval = null;
-            var interval_miliseconds = 1000;
-            var minimal_miliseconds = 100;
-            function intervalDown() {
-                if(interval_miliseconds < minimal_miliseconds) {
-                    interval_miliseconds = minimal_miliseconds;
+                        if (!cell.length || (cell.attr("class").includes("block") && !isExistNowBlock(cellId))) {
+                            canMove = false;
+                            if (direction === "DOWN") { // Landed
+                                placeBlock();
+                                return false; 
+                            }
+                            break;
+                        }
+                        new_current_blocks.push(cell);
+                    }
                 }
 
-                interval = setInterval(() => {
-                   //Lowering blocks one by one.
-                   moveDown();
-                   sendMyTetris();
-                }, interval_miliseconds);
-            }
-
-            var INIT_X_POSITION = 5; //The x-position value of the initial block.
-            var INIT_Y_POSITION = 1; //The y-position value of the initial block.
-            function diplayBlock(nowblock) {  //Outputs the desired block (=nowblock) to the desired location.
-                //ALL_BLOCK[nowblock.shape]
-                var current_blocks = [];
-                for(var i=0; i < ALL_BLOCK[nowblock.shape][BLOCK_POSITION_SHAPE].length; i++) {
-                    // ALL_BLOCK[nowblock.shape][0]  ->   "0:0"
-                    var block_xy = ALL_BLOCK[nowblock.shape][BLOCK_POSITION_SHAPE][i].split(":");
-                    var block_x  = Number(block_xy[0]) + INIT_X_POSITION;
-                    var block_y  = Number(block_xy[1]) + INIT_Y_POSITION;
-
-                    $("#" + block_x + "_" + block_y).attr("class", "block");
-                    current_blocks.push($("#" + block_x + "_" + block_y));
+                if (canMove) {
+                    NOW_BLOCK.current_blocks.forEach(function(blockCell) {
+                        blockCell.attr("class", "space"); // Clear all classes and set to space
+                    });
+                    NOW_BLOCK.current_blocks = new_current_blocks;
+                    NOW_BLOCK.current_blocks.forEach(function(blockCell) {
+                        blockCell.removeClass("space").addClass("block").addClass(NOW_BLOCK.colorClass);
+                    });
+                    return true;
                 }
-                return current_blocks;
+                return false;
+            }
+            
+            function isExistNowBlock(cellId) { // Check if cellId is part of the currently moving block
+                for(var k=0; k < NOW_BLOCK.current_blocks.length; k++) {
+                    if(NOW_BLOCK.current_blocks[k].attr("id") == cellId) {
+                        return true;
+                    }
+                }
+                return false;
             }
 
-            function sendMyTetris() {
-                var my_tetris = $("#TETRIS_CONTAINER").html()
-
-                let data = {"code": "my_tetris", "html": my_tetris, "socket_idx": my_socket_idx};
-                sendMessage(data);
+            function placeBlock() {
+                if (!NOW_BLOCK) return;
+                NOW_BLOCK.current_blocks.forEach(function(blockCell) {
+                    blockCell.removeClass("space").addClass("block").addClass(NOW_BLOCK.colorClass); // Ensure final classes
+                });
+                NOW_BLOCK = null; // Block is placed, no longer "current"
+                checkLines();
+                requestNewBlock(); // Request next block from server
+                sendMyTetrisHTML(); // Send updated board to others
             }
 
-            function iamReady(button) {
-                let data = {"code": "iam_ready", "socket_idx": my_socket_idx}
-                sendMessage(data);
+            function checkLines() {
+                var linesCleared = 0;
+                for (var r = GAME_ROWS; r >= 1; r--) {
+                    var isLineFull = true;
+                    for (var c = 1; c <= GAME_COLS; c++) {
+                        if ($(`#${c}_${r}`).attr("class") === "space") {
+                            isLineFull = false;
+                            break;
+                        }
+                    }
+                    if (isLineFull) {
+                        linesCleared++;
+                        for (var c = 1; c <= GAME_COLS; c++) {
+                            $(`#${c}_${r}`).attr("class", "space"); // Clear the line
+                        }
+                        // Shift down lines above
+                        for (var sr = r - 1; sr >= 1; sr--) {
+                            for (var sc = 1; sc <= GAME_COLS; sc++) {
+                                var cellAbove = $(`#${sc}_${sr}`);
+                                var cellBelow = $(`#${sc}_${sr + 1}`);
+                                cellBelow.attr("class", cellAbove.attr("class")); // Copy class from above
+                                 // Also copy specific block color if present
+                                ALL_BLOCK_SHAPES.forEach(function(blockShape) {
+                                    if (cellAbove.hasClass(blockShape.colorClass)) {
+                                        cellBelow.addClass(blockShape.colorClass);
+                                    } else {
+                                        cellBelow.removeClass(blockShape.colorClass);
+                                    }
+                                });
 
-                button.disabled = true;
-                button.style.backgroundColor = "#BBBBBB"
+                            }
+                        }
+                        r++; // Re-check the current row index as lines shifted
+                    }
+                }
+                if (linesCleared > 0) {
+                    // Send strike message if linesCleared > 1 (e.g. Tetris = 4 lines, strike 3)
+                    if (linesCleared >= 2) { // Strike for 2 or more lines
+                         var strikeCount = linesCleared -1; // Example: 2 lines = 1 strike, 4 lines = 3 strikes
+                         sendStrike(strikeCount);
+                    }
+                }
+            }
+            
+            function sendStrike(count) {
+                if (websocket && websocket.readyState === WebSocket.OPEN && my_socket_idx !== -1) {
+                    var msg = {"code": "strike", "attacker": my_socket_idx, "count": count};
+                    websocket.send(JSON.stringify(msg));
+                }
             }
 
-            function sendMessage(msg) {
-                websocket.send(JSON.stringify(msg));
+            function addGarbageLines(count) {
+                if (!isGamePlaying) return;
+                console.log("Adding", count, "garbage lines");
+                // Shift existing blocks up
+                for (var r = 1; r <= GAME_ROWS - count; r++) {
+                    for (var c = 1; c <= GAME_COLS; c++) {
+                        var cellCurrent = $(`#${c}_${r}`);
+                        var cellBelow = $(`#${c}_${r + count}`);
+                        cellCurrent.attr("class", cellBelow.attr("class"));
+                         ALL_BLOCK_SHAPES.forEach(function(blockShape) {
+                            if (cellBelow.hasClass(blockShape.colorClass)) {
+                                cellCurrent.addClass(blockShape.colorClass);
+                            } else {
+                                cellCurrent.removeClass(blockShape.colorClass);
+                            }
+                        });
+                    }
+                }
+                // Add new garbage lines at the bottom
+                for (var r = GAME_ROWS - count + 1; r <= GAME_ROWS; r++) {
+                    var holePosition = Math.floor(Math.random() * GAME_COLS) + 1;
+                    for (var c = 1; c <= GAME_COLS; c++) {
+                        var cell = $(`#${c}_${r}`);
+                        if (c === holePosition) {
+                            cell.attr("class", "space");
+                        } else {
+                            // Use a neutral garbage block color, or a random one
+                            cell.attr("class", "block block-j"); // Example: using J block color for garbage
+                        }
+                    }
+                }
+                 // Check if current block is pushed into invalid space
+                if (NOW_BLOCK) {
+                    var collision = false;
+                    NOW_BLOCK.current_blocks.forEach(function(blockCell) {
+                        if (blockCell.attr("class").includes("block") && !isExistNowBlock(blockCell.attr("id"))) {
+                             collision = true;
+                        }
+                    });
+                    if (collision) {
+                        console.log("Current block collided after garbage lines.");
+                        // This might cause issues, might need to adjust NOW_BLOCK or clear it
+                        // For simplicity, might just let it try to place and potentially game over
+                    }
+                }
             }
+
+
+            function gameLoop() {
+                if (!isGamePlaying) {
+                    clearInterval(gameInterval);
+                    return;
+                }
+                if (NOW_BLOCK) {
+                    moveBlock("DOWN");
+                } else {
+                    // If no current block, it might mean we are waiting for the server
+                    // or game over condition was met.
+                }
+                // Request other players' tetris boards periodically
+                if (websocket && websocket.readyState === WebSocket.OPEN && my_socket_idx !== -1) {
+                     var msg = {"code": "send_tetris_html", "socket_idx": my_socket_idx};
+                     //websocket.send(JSON.stringify(msg)); // Potentially too frequent, consider sending on change or less often
+                }
+            }
+            
+            gameInterval = setInterval(gameLoop, 700); // Adjust speed as needed
+
+            function gameOver() {
+                isGamePlaying = false;
+                clearInterval(gameInterval);
+                $("#statusMessage").text("Game Over!");
+                // Inform server about game over
+                if (websocket && websocket.readyState === WebSocket.OPEN && my_socket_idx !== -1) {
+                    var msg = {"code": "game_end", "socket_idx": my_socket_idx};
+                    websocket.send(JSON.stringify(msg));
+                }
+                 $("#readyButton").text("Play Again?").prop("disabled", false);
+            }
+
+            function sendMyTetrisHTML() {
+                if (websocket && websocket.readyState === WebSocket.OPEN && my_socket_idx !== -1) {
+                    var gameBoardHTML = $(`#tetrisTable`).clone();
+                    // Simplify HTML for sending (remove IDs, etc. if not needed by other clients for display)
+                    gameBoardHTML.find(`td`).each(function() {
+                        $(this).removeAttr('id').removeAttr('x').removeAttr('y');
+                        // Replace specific color classes with a generic 'block_small' or 'space_small'
+                        var newClass = '';
+                        if ($(this).hasClass('space')) {
+                            newClass = 'space_small';
+                        } else if ($(this).hasClass('block')) {
+                            newClass = 'block_small'; // Base small block class
+                             // Try to find specific color for small view
+                            for(const blockShape of ALL_BLOCK_SHAPES){
+                                if($(this).hasClass(blockShape.colorClass)){
+                                    newClass += ' ' + blockShape.smallColorClass;
+                                    break;
+                                }
+                            }
+                             if (newClass === 'block_small') { // if no specific color found, use default
+                                 newClass += ' block_small-j'; // default small color
+                             }
+                        }
+                        $(this).attr('class', newClass);
+                    });
+
+
+                    var msg = {
+                        "code": "my_tetris", 
+                        "socket_idx": my_socket_idx, 
+                        "html": gameBoardHTML.html() // Send inner HTML of the table
+                    };
+                    websocket.send(JSON.stringify(msg));
+                }
+            }
+
+
         </script>
-    </head>
-    <body>
-        <div style="width:1009px; height:550px; margin:0px auto; margin-top:50px">
-            <div style="height:550px; border-left:1px solid #98a3f7; border-top:1px solid #98a3f7; border-right:1px solid #98a3f7; border-bottom:1px solid #98a3f7; float:left; padding:0px">
-                <div id="TETRIS_CONTAINER" style="width:100%; padding:0px; margin:0px auto">
-                    <!-- Width x Height : 12 x 22 -->
-					<div style="display:none; position:absolute; left:0px; top:0px; text-align:center; color: red" id="divEND">
-						GAME END
-					</div>
-                    <table cellspacing=0 cellpadding=0 style="width:300px" align=center>
-                    <script>
-                        makeBlock(12, 22);
-                    </script>
-                    </table>
-                </div>
-				<div style="text-align:center; margin-top:20px">
-					<button style="padding:10px; background-color:blue; color:white" onclick="iamReady(this)">I AM READY</button>
-				</div>
-            </div>
-            <div style="width:200px; height:550px; background-color:white; float:left; margin-top:10px">
-                <div style="width:200px; height:50px; text-align:center; margin-bottom:15px">
-                    <div>Level</div>
-                    <div id="level">1</div>
-                </div>
-
-                <div style="width:200px; height:40px; text-align:center; margin-bottom:15px">
-                    <div>Score</div>
-                    <div id="score">0</div>
-                </div>
-
-                <div style="width:200px; height:30px; text-align:center">
-                    Next
-                </div>
-                <div style="width:200px; height:200px" id="divNextImg">
-
-                </div>
-                <div style="text-align:center; font-weight:bold; font-size:26px">
-                    <div style="font-size:12px">(Up Arrow: Change Shape)</div>
-                    <div>
-                        ↑ <br>
-                        ←↓→
-                    </div>
-                    <div style="font-size:12px; margin-top:13px">Spacebar (Lower to the Bottom)</div>
-                </div>
-            </div>
-
-            <div style="width:500px; background-color:white; float:left; margin-top:10px">
-				<div>
-					<div style="width:40%; min-height:230px; float:left; border:1px solid gray">
-						<div style="text-align:center">PLAYER1</div>
-						<div style="height:calc(230px - 30px); width:100%; text-align:center; margin-top:13px" id="PLAYER1">
-						</div>
-					</div>
-					<div style="width:40%; min-height:230px; float:left; border:1px solid gray">
-						<div style="text-align:center">PLAYER2</div>
-						<div style="height:calc(230px - 30px); width:100%; text-align:center; margin-top:13px" id="PLAYER2">
-						</div>
-					</div>
-				</div>
-				<div>
-					<div style="width:40%; min-height:230px; float:left; border:1px solid gray">
-						<div style="text-align:center">PLAYER3</div>
-						<div style="height:calc(230px - 30px); width:100%; text-align:center; margin-top:13px" id="PLAYER3">
-						</div>
-					</div>
-					<div style="width:40%; min-height:230px; float:left; border:1px solid gray">
-						<div style="text-align:center">PLAYER4</div>
-						<div style="height:calc(230px - 30px); width:100%; text-align:center; margin-top:13px" id="PLAYER4">
-						</div>
-					</div>
-				</div>
-				<div>
-					<div style="width:40%; min-height:230px; float:left; border:1px solid gray">
-						<div style="text-align:center">PLAYER5</div>
-						<div style="height:calc(230px - 30px); width:100%; text-align:center; margin-top:13px" id="PLAYER5">
-						</div>
-					</div>
-					<div style="width:40%; min-height:230px; float:left; border:1px solid gray">
-						<div style="text-align:center">PLAYER6</div>
-						<div style="height:calc(230px - 30px); width:100%; text-align:center; margin-top:13px" id="PLAYER6">
-						</div>
-					</div>
-				</div>
-            </div>
-
-        </div>
-
-		<div style="position:absolute; top:50%; left:50%; width:400px; height:400px; margin:-200px 0 0 -200px; text-align:center; color: red; display:none; font-size:160px" id="divCountDown">
-		</div>
     </body>
 </html>

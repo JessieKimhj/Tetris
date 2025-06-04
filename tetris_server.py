@@ -123,12 +123,15 @@ async def gameFinish(winnerIdx):
 
 
 async def newBlockResponse(sc, sending_block_idx):
-    global NEXT_BLOCK_SHAPE, ALL_BLOCK
-    if (len(BLOCK_ARRAY) - 1) < sending_block_idx:
-        BLOCK_ARRAY.append(randint(0, len(ALL_BLOCK) - 1))
+    global NEXT_BLOCK_SHAPE, ALL_BLOCK, NOW_BLOCK_SHAPE, BLOCK_ARRAY
 
-        NOW_BLOCK_SHAPE = NEXT_BLOCK_SHAPE
-        NEXT_BLOCK_SHAPE = BLOCK_ARRAY[len(BLOCK_ARRAY) - 1]
+    actual_now_block = NEXT_BLOCK_SHAPE
+
+    # Use the original logic to determine the new NEXT_BLOCK_SHAPE for preview
+    if (len(BLOCK_ARRAY) - 1) < sending_block_idx:
+        new_next_val = randint(0, len(ALL_BLOCK) - 1)
+        BLOCK_ARRAY.append(new_next_val)
+        actual_next_for_preview = new_next_val
     else:
         NOW_BLOCK_SHAPE = NEXT_BLOCK_SHAPE
         NEXT_BLOCK_SHAPE = BLOCK_ARRAY[sending_block_idx]
