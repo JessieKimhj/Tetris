@@ -17,7 +17,7 @@ isGameEnded = False
 async def accept(websocket, path):
     global SOCKET_AUTOINCRE, ALL_SOCKET, ALL_SOCKET_IDX
     print("connected from client")
-    # Keep the unique number of the current socket (increased by 1) in idx.
+    # Keep the unique number of the current socketin idx (increased by 1).
     websocket.idx = SOCKET_AUTOINCRE  
     SOCKET_AUTOINCRE += 1
     websocket.connected = True
@@ -44,7 +44,7 @@ async def accept(websocket, path):
 
                 # Notify to whole players that one friend is in READY status.
                 for sc in ALL_SOCKET:
-                    if sc.idx != data["socket_idx"]:  # Don't need to notify to players in this case.
+                    if sc.idx != data["socket_idx"]: 
                         data = {"code": "friend_ready", "socket_idx": data["socket_idx"]}
                         await sc.send(json.dumps(data));
 
@@ -58,7 +58,7 @@ async def accept(websocket, path):
             elif data["code"] == "send_tetris_html":
                 await sendTetrisHTML(data["socket_idx"])
             elif data["code"] == "newblock_request":
-                await newBlockResponse(findIdxFromAllSocket(data["socket_idx"]), data["sending_block_idx"])
+                await prepare_and_send_specific_client_block(findIdxFromAllSocket(data["socket_idx"]), data["sending_block_idx"])
             elif data["code"] == "strike":
                 await strike(data["attacker"], data["count"])
             elif data["code"] == "game_end":
@@ -109,7 +109,6 @@ async def strike(attacker, cnt):
     data = json.dumps(data)
 
     for sc in ALL_SOCKET:
-        # Exclude attackers.
         if sc.idx != attacker:  
             await sc.send(data)
 
@@ -122,23 +121,26 @@ async def gameFinish(winnerIdx):
         await sc.send(data)
 
 
-async def newBlockResponse(sc, sending_block_idx):
-    global NEXT_BLOCK_SHAPE, ALL_BLOCK, NOW_BLOCK_SHAPE, BLOCK_ARRAY
+# Send new current block and next block to a specific client
+async def prepare_and_send_specific_client_block(sc, client_sending_block_idx):
+    global NEXT_BLOCK_SHAPE, NOW_BLOCK_SHAPE, BLOCK_ARRAY, ALL_BLOCK
 
-    actual_now_block = NEXT_BLOCK_SHAPE
+    current_block_array_idx = client_sending_block_idx 
+    next_block_array_idx = client_sending_block_idx + 1  
 
-    # Use the original logic to determine the new NEXT_BLOCK_SHAPE for preview
-    if (len(BLOCK_ARRAY) - 1) < sending_block_idx:
-        new_next_val = randint(0, len(ALL_BLOCK) - 1)
-        BLOCK_ARRAY.append(new_next_val)
-        actual_next_for_preview = new_next_val
-    else:
-        NOW_BLOCK_SHAPE = NEXT_BLOCK_SHAPE
-        NEXT_BLOCK_SHAPE = BLOCK_ARRAY[sending_block_idx]
+    # Ensure BLOCK_ARRAY is filled up to the next_block_array_idx.
+    while len(BLOCK_ARRAY) <= next_block_array_idx:
+        BLOCK_ARRAY.append(randint(0, len(ALL_BLOCK) - 1))
 
-    data = {"code": "newblock_response", "next_block": NEXT_BLOCK_SHAPE}
-    data = json.dumps(data)
-    await sc.send(data)
+    now_block_for_client = BLOCK_ARRAY[current_block_array_idx]
+    next_block_for_client = BLOCK_ARRAY[next_block_array_idx]
+
+    # Set the current and next block shapes for this client
+    NOW_BLOCK_SHAPE = now_block_for_client  
+    NEXT_BLOCK_SHAPE = next_block_for_client
+    
+    data = {"code": "newblock", "now_block": now_block_for_client, "next_block": next_block_for_client}
+    await sc.send(json.dumps(data))
 
 
 async def sendTetrisHTML(idx):
@@ -153,25 +155,26 @@ async def sendTetrisHTML(idx):
 
 async def stanby():
     print("stanby")
-    await newBlock()
-
-    await startTimer()
-
-    data = {"code": "stanby", "sockets": ALL_SOCKET_IDX}
-    data = json.dumps(data)
-
+    
+    # 1. Send "stanby" message to clients first.
+    stanby_data = {"code": "stanby", "sockets": ALL_SOCKET_IDX}
+    stanby_data_json = json.dumps(stanby_data)
     for sc in ALL_SOCKET:
-        await sc.send(data)
+        await sc.send(stanby_data_json)
+
+    # 2. Start the countdown (sends messages up to "Start!").
+    await startTimer() 
+
+    # 3. After "Start!", broadcast the first block information.
+    await newBlock()
 
 
 async def startTimer():
-    countDown = 5
+    countDown = 3 
 
-    for i in range(5):
-        data = {"code": "countdown", "count": countDown}
+    for i in range(countDown, 0, -1): 
+        data = {"code": "countdown", "count": str(i)} 
         data = json.dumps(data)
-
-        countDown -= 1
 
         for sc in ALL_SOCKET:
             await sc.send(data)

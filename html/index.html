@@ -8,17 +8,17 @@
                 font-family: 'Arial', sans-serif;
                 display: flex;
                 justify-content: center;
-                align-items: flex-start; /* Align items to the start of the flex container */
+                align-items: flex-start; 
                 min-height: 100vh;
                 margin: 0;
                 background-color: #f0f0f0;
-                padding-top: 20px; /* Add some padding at the top */
+                padding-top: 20px; 
             }
 
             .container {
                 display: flex;
-                gap: 20px; /* Space between game area and player info */
-                align-items: flex-start; /* Align items to the start for differing heights */
+                gap: 20px; 
+                align-items: flex-start; 
             }
 
             .game-area {
@@ -34,36 +34,36 @@
             .block {
                 width: 25px;
                 height: 25px;
-                border: 1px solid #ddd; /* Lighter border for blocks */
-                background-color: skyblue; /* Default block color */
+                border: 1px solid #ddd; 
+                background-color: skyblue; 
             }
 
-            /* Tetromino colors */
-            .block-i { background-color: #00f0f0; } /* Cyan */
-            .block-j { background-color: #0000f0; } /* Blue */
-            .block-l { background-color: #f0a000; } /* Orange */
-            .block-o { background-color: #f0f000; } /* Yellow */
-            .block-s { background-color: #00f000; } /* Green */
-            .block-t { background-color: #a000f0; } /* Purple */
-            .block-z { background-color: #f00000; } /* Red */
+           
+            .block-i { background-color: #00f0f0; } 
+            .block-j { background-color: #0000f0; } 
+            .block-l { background-color: #f0a000; } 
+            .block-o { background-color: #f0f000; }
+            .block-s { background-color: #00f000; } 
+            .block-t { background-color: #a000f0; } 
+            .block-z { background-color: #f00000; } 
 
 
             .space {
                 width: 25px;
                 height: 25px;
-                border: 1px solid #eee; /* Lighter border for spaces */
+                border: 1px solid #eee; 
                 background-color: #fff;
             }
 
             .player-info-area {
                 display: flex;
-                flex-direction: column; /* Stack player info vertically */
-                gap: 15px; /* Space between player info sections */
+                flex-direction: column; 
+                gap: 15px; 
                 background-color: #fff;
                 padding: 20px;
                 border-radius: 8px;
                 box-shadow: 0 0 15px rgba(0,0,0,0.1);
-                min-width: 250px; /* Minimum width for player info area */
+                min-width: 250px; 
             }
             
             .player-info-area h2 {
@@ -94,10 +94,10 @@
             }
 
             .block_small {
-                width: 10px; /* Adjusted for better visibility */
+                width: 10px; 
                 height: 10px;
                 border: 1px solid #ccc;
-                background-color: skyblue; /* Default small block color */
+                background-color: skyblue; 
             }
             .block_small-i { background-color: #00f0f0; }
             .block_small-j { background-color: #0000f0; }
@@ -108,14 +108,14 @@
             .block_small-z { background-color: #f00000; }
 
             .space_small {
-                width: 10px; /* Adjusted for better visibility */
+                width: 10px; 
                 height: 10px;
                 border: 1px solid #f0f0f0;
                 background-color: white;
             }
 
             button {
-                background-color: #4CAF50; /* Green */
+                background-color: #4CAF50; 
                 border: none;
                 color: white;
                 padding: 10px 20px;
@@ -152,8 +152,8 @@
                 border-radius: 5px;
                 margin-bottom:10px;
             }
-            #friendsInfo div { /* Style for each friend's info */
-                padding: 8px 5px; /* Adjusted padding */
+            #friendsInfo div { 
+                padding: 8px 5px; 
                 border-bottom: 1px dashed #eee;
             }
             #friendsInfo div:last-child {
@@ -161,21 +161,21 @@
             }
 
             #controlsInfo {
-                border: 1px solid #e0e0e0; /* Softer border */
-                padding: 15px; /* Increased padding */
-                border-radius: 6px; /* Rounded corners */
-                margin-bottom: 15px; /* Consistent margin */
-                background-color: #f9f9f9; /* Very light gray background */
+                border: 1px solid #e0e0e0; 
+                padding: 15px; 
+                border-radius: 6px; 
+                margin-bottom: 15px; 
+                background-color: #f9f9f9; 
             }
 
             #controlsInfo ul {
                 list-style-type: none;
                 padding-left: 0;
-                margin-top: 5px; /* Add some space above the list */
+                margin-top: 5px; 
             }
 
             #controlsInfo li {
-                margin-bottom: 8px; /* Space between list items */
+                margin-bottom: 8px; 
                 font-size: 0.95em;
             }
 
@@ -186,9 +186,9 @@
                 padding: 3px 7px;
                 border-radius: 4px;
                 margin-right: 8px;
-                min-width: 50px; /* Ensure consistent width for keys like up/down arrow */
+                min-width: 50px; 
                 text-align: center;
-                font-family: 'Consolas', 'Menlo', monospace; /* Monospace font for keys */
+                font-family: 'Consolas', 'Menlo', monospace; 
             }
 
         </style>
@@ -197,7 +197,7 @@
         <div class="container">
             <div class="game-area">
                 <table id="tetrisTable" style="border:1px solid black;">
-                    <!-- Game board will be generated here by JavaScript -->
+                    <!-- Game board will be generated here-->
                 </table>
             </div>
 
@@ -239,9 +239,9 @@
         </div>
 
         <script>
-            // --- Existing JavaScript Code (with modifications for new design) ---
+
             
-            // Block definitions (colors will be applied via CSS classes)
+            // Block definitions
             var ALL_BLOCK_SHAPES = [
                 { name: 'i', colorClass: 'block-i', smallColorClass: 'block_small-i', shapes: [["0:0", "1:0", "2:0", "3:0"], ["0:0", "0:1", "0:2", "0:3"]] },
                 { name: 'j', colorClass: 'block-j', smallColorClass: 'block_small-j', shapes: [["0:0", "0:1", "1:1"], ["0:1", "0:0", "1:0"], ["0:0", "1:0", "1:1"], ["1:0", "0:1", "1:1"]] },
@@ -260,7 +260,7 @@
 
             function makeGameBoard(cols, rows) {
                 var table = document.getElementById("tetrisTable");
-                table.innerHTML = ""; // Clear previous board
+                table.innerHTML = ""; 
                 for (var i = 1; i <= rows; i++) {
                     var tr = document.createElement("tr");
                     var X_array = [];
@@ -285,7 +285,7 @@
                     var tr = document.createElement("tr");
                     for (var j = 0; j < size; j++) {
                         var td = document.createElement("td");
-                        td.className = "space_small"; // Use small class for preview
+                        td.className = "space_small"; 
                         td.id = `next_${j}_${i}`;
                         tr.appendChild(td);
                     }
@@ -293,16 +293,16 @@
                 }
             }
             
-            // --- Start WebSocket and Game Logic (adapted from original) ---
+            //Start WebSocket and Game Logic
             var websocket = null;
             var my_socket_idx = -1;
-            var all_websocket_info = []; // Store {idx, alias, isReady, tetrisHTML}
-            var NOW_BLOCK = null;       // {shape_idx, current_blocks, colorClass, smallColorClass}
+            var all_websocket_info = []; 
+            var NOW_BLOCK = null;    
             var NEXT_BLOCK_SHAPE_IDX = -1;
             var isGamePlaying = false;
             var gameInterval = null;
 
-            var sending_block_idx = 0; //블록 인덱스.
+            var sending_block_idx = 0; 
 
             $(document).ready(function(){
                 makeGameBoard(GAME_COLS, GAME_ROWS);
@@ -314,8 +314,8 @@
                 }
                 $("#myInfo").html(`<h3>My Status</h3><div>ID: ${alias} (Connecting...)</div>`);
 
-                websocket = new WebSocket("ws://10.141.173.212:8080");
-                // websocket = new WebSocket("ws://localhost:8080");
+                // websocket = new WebSocket("ws://10.141.173.212:8080");
+                websocket = new WebSocket("ws://localhost:8080");
                 
                 websocket.onopen = function() {
                     $("#statusMessage").text("Connected to server. Waiting for ID...");
@@ -351,16 +351,25 @@
                      else if(message.code == "stanby") { //All players are ready
                         $("#statusMessage").text("All players ready! Game starting...");
                         $("#readyButton").prop("disabled", true);
-                        isGamePlaying = false; // Game hasn't started with blocks yet, just countdown
+                        isGamePlaying = false; 
                     }
                     else if(message.code == "countdown") {
                         $("#statusMessage").text(message.count);
                          if (message.count === "Start!") {
+                            console.log("Start! received. isGamePlaying before set:", isGamePlaying, "Initial NOW_BLOCK state:", NOW_BLOCK);
                             isGamePlaying = true;
-                            if(my_socket_idx != -1) { // Request first block if I'm a valid player
-                                 requestNewBlock(); // Request the very first block
+                            console.log("isGamePlaying after set:", isGamePlaying);
+                            
+                            // Clear any existing interval before starting a new one
+                            if (gameInterval) {
+                                clearInterval(gameInterval);
+                                gameInterval = null;
                             }
-                            gameLoop();
+                            // Start the game loop ONLY after "Start!" is received
+                            gameInterval = setInterval(gameLoop, 700);
+                            console.log("setInterval for gameLoop started after Start!");
+
+                            // Server broadcasts the newblock message after "Start!", so no need for the client to request it
                         }
                     }
                     else if(message.code == "newblock") { // Server sends new block info
@@ -373,12 +382,6 @@
                              spawnNewBlock(currentBlockShapeIdx);
                         }
                         if (NEXT_BLOCK_SHAPE_IDX !== undefined && NEXT_BLOCK_SHAPE_IDX < ALL_BLOCK_SHAPES.length) {
-                            drawNextBlockPreview(NEXT_BLOCK_SHAPE_IDX);
-                        }
-                    }
-                     else if(message.code == "newblock_response") { //Server sends new block info after strike
-                        NEXT_BLOCK_SHAPE_IDX = message.next_block;
-                         if (NEXT_BLOCK_SHAPE_IDX !== undefined && NEXT_BLOCK_SHAPE_IDX < ALL_BLOCK_SHAPES.length) {
                             drawNextBlockPreview(NEXT_BLOCK_SHAPE_IDX);
                         }
                     }
@@ -397,7 +400,10 @@
                     }
                     else if (message.code === "game_finish") {
                         isGamePlaying = false;
-                        clearInterval(gameInterval);
+                        if (gameInterval) {
+                            clearInterval(gameInterval);
+                            gameInterval = null; // Reset for potential new game
+                        }
                         var winnerMessage = "Game Over! ";
                         if (message.winnerIdx === -1) {
                             winnerMessage += "It's a draw or no one left!";
@@ -422,7 +428,10 @@
                 websocket.onclose = function() {
                     $("#statusMessage").text("Disconnected from server.");
                     isGamePlaying = false;
-                    clearInterval(gameInterval);
+                    if (gameInterval) {
+                        clearInterval(gameInterval);
+                        gameInterval = null; // Reset for potential new game
+                    }
                 };
 
                 websocket.onerror = function(error) {
@@ -479,7 +488,7 @@
                 console.log("Spawning block with shape index:", shapeIndex);
                 if (shapeIndex === undefined || shapeIndex < 0 || shapeIndex >= ALL_BLOCK_SHAPES.length) {
                     console.error("Invalid shapeIndex for spawnNewBlock:", shapeIndex);
-                    gameOver(); // Potentially end game if block data is bad
+                    gameOver();
                     return;
                 }
 
@@ -514,6 +523,7 @@
                     NOW_BLOCK.current_blocks.forEach(function(blockCell) {
                         blockCell.removeClass("space").addClass("block").addClass(NOW_BLOCK.colorClass);
                     });
+                    console.log("NOW_BLOCK after spawnNewBlock logic:", JSON.parse(JSON.stringify(NOW_BLOCK)));
                 } else {
                     console.log("Cannot spawn new block - collision detected.");
                     gameOver();
@@ -569,13 +579,14 @@
             }
 
             function moveBlock(direction) {
+                console.log("moveBlock called with direction:", direction, "isGamePlaying:", isGamePlaying, "NOW_BLOCK exists:", (NOW_BLOCK !== null));
                 if (!NOW_BLOCK || !isGamePlaying) return false;
 
                 var new_current_blocks = [];
                 var canMove = true;
 
                 if (direction === "UP") { // Rotate
-                     if (ALL_BLOCK_SHAPES[NOW_BLOCK.shape_idx].shapes.length === 1) return false; // O-block
+                     if (ALL_BLOCK_SHAPES[NOW_BLOCK.shape_idx].shapes.length === 1) return false; 
 
                     var originalRotation = BLOCK_POSITION_SHAPE;
                     BLOCK_POSITION_SHAPE++;
@@ -583,11 +594,11 @@
                         BLOCK_POSITION_SHAPE = 0;
                     }
                     var newShape = ALL_BLOCK_SHAPES[NOW_BLOCK.shape_idx].shapes[BLOCK_POSITION_SHAPE];
-                    var standard_block = NOW_BLOCK.current_blocks[0]; // Use first block as pivot reference
+                    var standard_block = NOW_BLOCK.current_blocks[0]; 
                     var standard_x = parseInt(standard_block.attr("x"));
                     var standard_y = parseInt(standard_block.attr("y"));
 
-                    // Need to adjust standard_x and standard_y based on the pivot of the current rotation
+                    // Need to adjust x and y coordinates based on the current rotation point
                     var currentPivot = ALL_BLOCK_SHAPES[NOW_BLOCK.shape_idx].shapes[originalRotation][0].split(":");
                     standard_x -= parseInt(currentPivot[0]);
                     standard_y -= parseInt(currentPivot[1]);
@@ -602,13 +613,13 @@
 
                         if (!cell.length || (cell.attr("class").includes("block") && !isExistNowBlock(cellId))) {
                             canMove = false;
-                            BLOCK_POSITION_SHAPE = originalRotation; // Revert rotation
+                            BLOCK_POSITION_SHAPE = originalRotation; 
                             break;
                         }
                         new_current_blocks.push(cell);
                     }
 
-                } else { // Horizontal or Downward movement
+                } else {
                     var dx = 0, dy = 0;
                     if (direction === "LEFT") dx = -1;
                     else if (direction === "RIGHT") dx = 1;
@@ -706,9 +717,9 @@
                     }
                 }
                 if (linesCleared > 0) {
-                    // Send strike message if linesCleared > 1 (e.g. Tetris = 4 lines, strike 3)
+        
                     if (linesCleared >= 2) { // Strike for 2 or more lines
-                         var strikeCount = linesCleared -1; // Example: 2 lines = 1 strike, 4 lines = 3 strikes
+                         var strikeCount = linesCleared -1; 
                          sendStrike(strikeCount);
                     }
                 }
@@ -747,8 +758,7 @@
                         if (c === holePosition) {
                             cell.attr("class", "space");
                         } else {
-                            // Use a neutral garbage block color, or a random one
-                            cell.attr("class", "block block-j"); // Example: using J block color for garbage
+                            cell.attr("class", "block block-j"); 
                         }
                     }
                 }
@@ -762,36 +772,37 @@
                     });
                     if (collision) {
                         console.log("Current block collided after garbage lines.");
-                        // This might cause issues, might need to adjust NOW_BLOCK or clear it
-                        // For simplicity, might just let it try to place and potentially game over
                     }
                 }
             }
 
 
             function gameLoop() {
+                console.log("gameLoop called. isGamePlaying:", isGamePlaying, "NOW_BLOCK exists:", (NOW_BLOCK !== null));
                 if (!isGamePlaying) {
-                    clearInterval(gameInterval);
+                    if (gameInterval) {
+                        clearInterval(gameInterval);
+                        gameInterval = null; // Reset for potential new game
+                    }
                     return;
                 }
                 if (NOW_BLOCK) {
                     moveBlock("DOWN");
                 } else {
                     // If no current block, it might mean we are waiting for the server
-                    // or game over condition was met.
                 }
-                // Request other players' tetris boards periodically
                 if (websocket && websocket.readyState === WebSocket.OPEN && my_socket_idx !== -1) {
                      var msg = {"code": "send_tetris_html", "socket_idx": my_socket_idx};
-                     //websocket.send(JSON.stringify(msg)); // Potentially too frequent, consider sending on change or less often
+                  
                 }
             }
             
-            gameInterval = setInterval(gameLoop, 700); // Adjust speed as needed
-
             function gameOver() {
                 isGamePlaying = false;
-                clearInterval(gameInterval);
+                if (gameInterval) {
+                    clearInterval(gameInterval);
+                    gameInterval = null; // Reset for potential new game
+                }
                 $("#statusMessage").text("Game Over!");
                 // Inform server about game over
                 if (websocket && websocket.readyState === WebSocket.OPEN && my_socket_idx !== -1) {
@@ -812,7 +823,7 @@
                         if ($(this).hasClass('space')) {
                             newClass = 'space_small';
                         } else if ($(this).hasClass('block')) {
-                            newClass = 'block_small'; // Base small block class
+                            newClass = 'block_small';
                              // Try to find specific color for small view
                             for(const blockShape of ALL_BLOCK_SHAPES){
                                 if($(this).hasClass(blockShape.colorClass)){
