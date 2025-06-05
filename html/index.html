@@ -272,8 +272,9 @@
                 }
                 $("#myInfo").html(`<h3>My Status</h3><div>ID: ${alias} (Connecting...)</div>`);
 
-                websocket = new WebSocket("ws://localhost:8080");
-
+                websocket = new WebSocket("ws://10.141.173.212:8080");
+                // websocket = new WebSocket("ws://localhost:8080");
+                
                 websocket.onopen = function() {
                     $("#statusMessage").text("Connected to server. Waiting for ID...");
                     // Server will send my_socket_idx
