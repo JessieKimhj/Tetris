@@ -24,12 +24,16 @@ A real-time multiplayer Tetris game implemented using WebSocket and Flask. Playe
 
 ```bash
 pip install flask websockets numpy
-python -m flask --app start run
+python tetris_server.py --host 0.0.0.0
 ```
 ### On the 2nd Terminal
 ```bash
-python tetris_server.py
+python -m flask --app start run --host=0.0.0.0
 ```
-will be running on your localhost 5000
+The `--host 0.0.0.0` flag allows the server to accept connections from any IP address, not just localhost. This is necessary for:
+
+- Allowing other devices on the network to connect to your server
+
+Without this flag, the server would only accept connections from localhost (127.0.0.1), making it impossible for other players to join.
 
 

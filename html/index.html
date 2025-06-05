@@ -153,11 +153,42 @@
                 margin-bottom:10px;
             }
             #friendsInfo div { /* Style for each friend's info */
-                padding: 5px;
+                padding: 8px 5px; /* Adjusted padding */
                 border-bottom: 1px dashed #eee;
             }
             #friendsInfo div:last-child {
                 border-bottom: none;
+            }
+
+            #controlsInfo {
+                border: 1px solid #e0e0e0; /* Softer border */
+                padding: 15px; /* Increased padding */
+                border-radius: 6px; /* Rounded corners */
+                margin-bottom: 15px; /* Consistent margin */
+                background-color: #f9f9f9; /* Very light gray background */
+            }
+
+            #controlsInfo ul {
+                list-style-type: none;
+                padding-left: 0;
+                margin-top: 5px; /* Add some space above the list */
+            }
+
+            #controlsInfo li {
+                margin-bottom: 8px; /* Space between list items */
+                font-size: 0.95em;
+            }
+
+            #controlsInfo li strong {
+                display: inline-block;
+                background-color: #e0e0e0;
+                color: #333;
+                padding: 3px 7px;
+                border-radius: 4px;
+                margin-right: 8px;
+                min-width: 50px; /* Ensure consistent width for keys like up/down arrow */
+                text-align: center;
+                font-family: 'Consolas', 'Menlo', monospace; /* Monospace font for keys */
             }
 
         </style>
@@ -191,6 +222,17 @@
                     <table id="nextBlockTable" style="border:1px solid black; margin-top:5px;">
                         <!-- Next block preview will be generated here -->
                     </table>
+                </div>
+
+                <div class="player-section" id="controlsInfo">
+                    <h3>Controls</h3>
+                    <ul style="list-style-type: none; padding-left: 0;">
+                        <li><strong>&larr; (Left Arrow):</strong> Move Left</li>
+                        <li><strong>&rarr; (Right Arrow):</strong> Move Right</li>
+                        <li><strong>&darr; (Down Arrow):</strong> Move Down (Soft Drop)</li>
+                        <li><strong>&uarr; (Up Arrow):</strong> Rotate</li>
+                        <li><strong>Spacebar:</strong> Hard Drop</li>
+                    </ul>
                 </div>
 
             </div>
