@@ -333,7 +333,7 @@
                             drawNextBlockPreview(NEXT_BLOCK_SHAPE_IDX);
                         }
                     }
-                     else if(message.code == "newblock_response") { // Server sends new block info after strike
+                     else if(message.code == "newblock_response") { //Server sends new block info after strike
                         NEXT_BLOCK_SHAPE_IDX = message.next_block;
                          if (NEXT_BLOCK_SHAPE_IDX !== undefined && NEXT_BLOCK_SHAPE_IDX < ALL_BLOCK_SHAPES.length) {
                             drawNextBlockPreview(NEXT_BLOCK_SHAPE_IDX);
