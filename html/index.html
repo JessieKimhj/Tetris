@@ -506,7 +506,7 @@
                     var cellId = x + "_" + y;
                     var cell = $(`#${cellId}`);
 
-                    if (!cell.length || cell.attr("class") === "block") { // Check for collision at spawn
+                    if (!cell.length || cell.hasClass("block")) { // Check for collision at spawn
                         canSpawn = false;
                         break;
                     }
